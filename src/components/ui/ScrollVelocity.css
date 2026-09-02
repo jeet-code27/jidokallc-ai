@@ -1,0 +1,21 @@
+.velocity-parallax {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.velocity-scroller {
+  display: flex;
+  white-space: nowrap;
+  text-align: center;
+  font-family: var(--font-heading, sans-serif);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: inherit;
+}
+
+.velocity-scroller span {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}

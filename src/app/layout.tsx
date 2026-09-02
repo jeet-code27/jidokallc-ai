@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Custom AI Agents & Intelligent Automation for Modern Businesses.",
 };
 
+import CursorFollower from "@/components/ui/cursor-follower";
+
 export default function RootLayout({
   children,
 }: {
@@ -26,7 +28,10 @@ export default function RootLayout({
           type="text/css"
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <CursorFollower />
+        {children}
+      </body>
     </html>
   );
 }
