@@ -172,7 +172,7 @@ export default function HeroLandingPage() {
           -------------------------------------------------------------------------- */}
       <video
         ref={videoRef}
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260530_042513_df96a13b-6155-4f6e-8b93-c9dee66fba08.mp4"
+        src="https://res.cloudinary.com/dnd8u5sll/video/upload/v1788265920/Robot_mascot_animating_seamless_z5bifz.mp4"
         muted
         playsInline
         preload="auto"
@@ -244,19 +244,16 @@ export default function HeroLandingPage() {
           aria-expanded={mobileMenuOpen}
         >
           <span
-            className={`w-6 h-[2px] bg-black transition-all duration-300 transform ${
-              mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
-            }`}
+            className={`w-6 h-[2px] bg-black transition-all duration-300 transform ${mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
+              }`}
           />
           <span
-            className={`w-6 h-[2px] bg-black transition-all duration-300 ${
-              mobileMenuOpen ? "opacity-0" : "opacity-100"
-            }`}
+            className={`w-6 h-[2px] bg-black transition-all duration-300 ${mobileMenuOpen ? "opacity-0" : "opacity-100"
+              }`}
           />
           <span
-            className={`w-6 h-[2px] bg-black transition-all duration-300 transform ${
-              mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-            }`}
+            className={`w-6 h-[2px] bg-black transition-all duration-300 transform ${mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+              }`}
           />
         </button>
       </nav>
@@ -265,11 +262,10 @@ export default function HeroLandingPage() {
           3. MOBILE OVERLAY MENU (Z-INDEX: 9)
           -------------------------------------------------------------------------- */}
       <div
-        className={`fixed inset-0 bg-white/95 backdrop-blur-sm flex flex-col justify-center px-8 gap-8 md:hidden transition-all duration-300 ${
-          mobileMenuOpen
+        className={`fixed inset-0 bg-white/95 backdrop-blur-sm flex flex-col justify-center px-8 gap-8 md:hidden transition-all duration-300 ${mobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        }`}
+          }`}
         style={{ zIndex: 9 }}
       >
         {navLinks.map((link) => (
