@@ -70,29 +70,29 @@ export default function TestimonialComponent() {
       </div>
 
       {/* =========================================================================
-          2. BENTO TESTIMONIAL GRID (3 COLUMNS)
+          2. BENTO TESTIMONIAL GRID (GLASSMORPHISM BOXES ACROSS ALL 3 COLUMNS)
           ========================================================================= */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 w-full">
         
         {/* ==================== COLUMN 1 ==================== */}
-        <div className="flex flex-col gap-4 sm:gap-5">
-          {/* Card 1: Recreational Facility (Dark Hero Bento) */}
+        <div className="flex flex-col gap-5 sm:gap-6">
+          {/* Card 1: Recreational Facility (Dark Glass Bento) */}
           <TimelineContent
             animationNum={3}
             customVariants={revealVariants}
             timelineRef={testimonialRef}
-            className="flex-1 flex flex-col justify-between relative bg-[#0D0F14] text-white overflow-hidden rounded-3xl border border-black/15 p-6 sm:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.12)] group hover:-translate-y-1.5 transition-all duration-300 min-h-[300px]"
+            className="flex-1 flex flex-col justify-between relative bg-black/95 backdrop-blur-xl text-white overflow-hidden rounded-3xl border border-white/10 p-7 sm:p-9 shadow-[0_20px_45px_rgba(0,0,0,0.15)] ring-1 ring-white/10 hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:-translate-y-2 hover:border-white/20 transition-all duration-300 group min-h-[300px]"
           >
-            {/* Ambient Background Grid Pattern */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#65B5F5]/15 rounded-full blur-2xl pointer-events-none" />
+            {/* Ambient Reflection */}
+            <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#65B5F5]/20 rounded-full blur-3xl group-hover:bg-[#65B5F5]/35 transition-all duration-300 pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
-            <div className="relative z-10 space-y-3">
+            <div className="relative z-10 space-y-3.5">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-[#65B5F5] font-semibold">
                   OPERATIONS · SYSTEM 23
                 </span>
-                <span className="inline-flex items-center gap-1 text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-[#65B5F5]/20 text-[#65B5F5] border border-[#65B5F5]/30">
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono px-3 py-1 rounded-full bg-[#65B5F5]/20 text-[#65B5F5] border border-[#65B5F5]/30">
                   <CheckCircle2 className="w-3 h-3" />
                   18 hrs saved
                 </span>
@@ -128,19 +128,19 @@ export default function TestimonialComponent() {
             </div>
           </TimelineContent>
 
-          {/* Card 2: Sneaker Boutique (Brand Blue Card) */}
+          {/* Card 2: Sneaker Boutique (Brand Blue Glass Card) */}
           <TimelineContent
             animationNum={4}
             customVariants={revealVariants}
             timelineRef={testimonialRef}
-            className="flex flex-col justify-between relative bg-[#65B5F5] text-black overflow-hidden rounded-3xl border border-black/10 p-6 sm:p-7 shadow-[0_10px_25px_rgba(101,181,245,0.25)] group hover:-translate-y-1.5 transition-all duration-300"
+            className="flex flex-col justify-between relative bg-[#65B5F5] backdrop-blur-xl text-black overflow-hidden rounded-3xl border border-white/40 p-7 sm:p-8 shadow-[0_10px_30px_rgba(101,181,245,0.25)] ring-1 ring-black/[0.05] hover:shadow-[0_20px_45px_rgba(101,181,245,0.35)] hover:-translate-y-2 hover:bg-[#5bb0f3] transition-all duration-300 group"
           >
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-black/75 font-bold">
                   RETAIL SYNC · SYSTEM 18
                 </span>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-black/10 text-black font-semibold">
+                <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-black/10 text-black font-semibold">
                   8 hrs/wk saved
                 </span>
               </div>
@@ -170,29 +170,32 @@ export default function TestimonialComponent() {
         </div>
 
         {/* ==================== COLUMN 2 ==================== */}
-        <div className="flex flex-col gap-4 sm:gap-5">
-          {/* Card 3: Roofing Contractor (Field Voice Dispatch) */}
+        <div className="flex flex-col gap-5 sm:gap-6">
+          {/* Card 3: Roofing Contractor (Frosted Glass Box with Ambient Glow) */}
           <TimelineContent
             animationNum={5}
             customVariants={revealVariants}
             timelineRef={testimonialRef}
-            className="flex flex-col justify-between relative bg-white/90 backdrop-blur-xl text-black overflow-hidden rounded-3xl border border-black/10 p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.05] group hover:-translate-y-1.5 transition-all duration-300"
+            className="flex flex-col justify-between relative bg-white/70 backdrop-blur-xl border border-white/80 rounded-3xl p-7 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03),0_1px_3px_rgba(0,0,0,0.02)] ring-1 ring-black/[0.05] hover:shadow-[0_25px_50px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)] hover:bg-white/90 hover:border-black/15 hover:-translate-y-2 transition-all duration-300 group overflow-hidden"
           >
-            <div className="space-y-2.5">
+            {/* Ambient Reflection */}
+            <div className="absolute -top-16 -right-16 w-36 h-36 bg-[#65B5F5]/10 rounded-full blur-2xl group-hover:bg-[#65B5F5]/25 transition-all duration-300 pointer-events-none" />
+
+            <div className="relative z-10 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-black/60 font-semibold">
+                <span className="text-[11px] font-mono tracking-wider text-black/50 uppercase">
                   VOICE AI DISPATCH · SYSTEM 01
                 </span>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-[#65B5F5]/15 text-black border border-[#65B5F5]/40 font-semibold">
+                <span className="inline-block text-[12px] font-semibold px-3 py-1 rounded-full bg-[#65B5F5]/15 text-black border border-[#65B5F5]/40 font-mono shadow-sm">
                   3x Faster Response
                 </span>
               </div>
-              <p className="text-sm sm:text-[15px] text-black/80 leading-relaxed">
+              <p className="text-sm sm:text-base text-black/75 leading-relaxed">
                 &ldquo;Calls came in while our crews were on roofs. Jidoka&apos;s voice agent answers 24/7, qualifies the job scope, and books directly. Zero missed leads.&rdquo;
               </p>
             </div>
 
-            <div className="flex items-center justify-between pt-5 mt-3 border-t border-black/5">
+            <div className="relative z-10 flex items-center justify-between pt-5 mt-4 border-t border-black/5">
               <div>
                 <h3 className="font-bold text-base text-black" style={{ fontFamily: "var(--font-heading)" }}>
                   Dave Callahan
@@ -211,28 +214,31 @@ export default function TestimonialComponent() {
             </div>
           </TimelineContent>
 
-          {/* Card 4: PT Clinic (No-Show Recovery) */}
+          {/* Card 4: PT Clinic (Frosted Glass Box with Ambient Glow) */}
           <TimelineContent
             animationNum={6}
             customVariants={revealVariants}
             timelineRef={testimonialRef}
-            className="flex flex-col justify-between relative bg-white/90 backdrop-blur-xl text-black overflow-hidden rounded-3xl border border-black/10 p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.05] group hover:-translate-y-1.5 transition-all duration-300"
+            className="flex flex-col justify-between relative bg-white/70 backdrop-blur-xl border border-white/80 rounded-3xl p-7 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03),0_1px_3px_rgba(0,0,0,0.02)] ring-1 ring-black/[0.05] hover:shadow-[0_25px_50px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)] hover:bg-white/90 hover:border-black/15 hover:-translate-y-2 transition-all duration-300 group overflow-hidden"
           >
-            <div className="space-y-2.5">
+            {/* Ambient Reflection */}
+            <div className="absolute -top-16 -right-16 w-36 h-36 bg-[#65B5F5]/10 rounded-full blur-2xl group-hover:bg-[#65B5F5]/25 transition-all duration-300 pointer-events-none" />
+
+            <div className="relative z-10 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-black/60 font-semibold">
+                <span className="text-[11px] font-mono tracking-wider text-black/50 uppercase">
                   CLINIC RECOVERY · SYSTEM 08
                 </span>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-black/5 text-black/70 font-semibold">
+                <span className="inline-block text-[12px] font-semibold px-3 py-1 rounded-full bg-black/5 text-black/70 border border-black/10 font-mono shadow-sm">
                   94% Recovery
                 </span>
               </div>
-              <p className="text-sm sm:text-[15px] text-black/80 leading-relaxed">
+              <p className="text-sm sm:text-base text-black/75 leading-relaxed">
                 &ldquo;The reminder cascade and automatic same-day rescheduling recovered 14 empty slots in our first month. Patients love how fast it confirms.&rdquo;
               </p>
             </div>
 
-            <div className="flex items-center justify-between pt-5 mt-3 border-t border-black/5">
+            <div className="relative z-10 flex items-center justify-between pt-5 mt-4 border-t border-black/5">
               <div>
                 <h3 className="font-bold text-base text-black" style={{ fontFamily: "var(--font-heading)" }}>
                   Dr. Sarah Lin
@@ -253,29 +259,32 @@ export default function TestimonialComponent() {
         </div>
 
         {/* ==================== COLUMN 3 ==================== */}
-        <div className="flex flex-col gap-4 sm:gap-5">
-          {/* Card 5: Engineering Assurance / Speed */}
+        <div className="flex flex-col gap-5 sm:gap-6">
+          {/* Card 5: Engineering Assurance (Light Blue Frosted Glass) */}
           <TimelineContent
             animationNum={7}
             customVariants={revealVariants}
             timelineRef={testimonialRef}
-            className="flex flex-col justify-between relative bg-[#65B5F5]/10 text-black overflow-hidden rounded-3xl border border-[#65B5F5]/30 p-6 sm:p-7 shadow-[0_10px_25px_rgba(0,0,0,0.02)] group hover:-translate-y-1.5 transition-all duration-300"
+            className="flex flex-col justify-between relative bg-white/70 backdrop-blur-xl border border-white/80 rounded-3xl p-7 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03),0_1px_3px_rgba(0,0,0,0.02)] ring-1 ring-black/[0.05] hover:shadow-[0_25px_50px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)] hover:bg-white/90 hover:border-black/15 hover:-translate-y-2 transition-all duration-300 group overflow-hidden"
           >
-            <div className="space-y-2.5">
+            {/* Ambient Reflection */}
+            <div className="absolute -top-16 -right-16 w-36 h-36 bg-[#65B5F5]/10 rounded-full blur-2xl group-hover:bg-[#65B5F5]/25 transition-all duration-300 pointer-events-none" />
+
+            <div className="relative z-10 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-[#65B5F5] font-bold">
+                <span className="text-[11px] font-mono tracking-wider text-[#65B5F5] font-bold uppercase">
                   DIRECT ACCESS · DWY MODEL
                 </span>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-black/5 text-black font-semibold">
+                <span className="inline-block text-[12px] font-semibold px-3 py-1 rounded-full bg-[#65B5F5]/15 text-black border border-[#65B5F5]/40 font-mono shadow-sm">
                   1-on-1 Build
                 </span>
               </div>
-              <p className="text-sm sm:text-[15px] text-black/85 leading-relaxed font-medium">
+              <p className="text-sm sm:text-base text-black/75 leading-relaxed">
                 &ldquo;Direct access to the builder made all the difference. No agency telephone game. We got a custom pipeline running in 2 weeks flat.&rdquo;
               </p>
             </div>
 
-            <div className="flex items-center justify-between pt-5 mt-3 border-t border-black/10">
+            <div className="relative z-10 flex items-center justify-between pt-5 mt-4 border-t border-black/5">
               <div>
                 <h3 className="font-bold text-base text-black" style={{ fontFamily: "var(--font-heading)" }}>
                   Kevin O&apos;Donnell
@@ -294,30 +303,32 @@ export default function TestimonialComponent() {
             </div>
           </TimelineContent>
 
-          {/* Card 6: Founder Commitment Card with Bryce's Avatar */}
+          {/* Card 6: Founder Commitment Card (Dark Glass Bento with Glow) */}
           <TimelineContent
             animationNum={8}
             customVariants={revealVariants}
             timelineRef={testimonialRef}
-            className="flex-1 flex flex-col justify-between relative bg-[#0D0F14] text-white overflow-hidden rounded-3xl border border-black/15 p-6 sm:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.12)] group hover:-translate-y-1.5 transition-all duration-300 min-h-[260px]"
+            className="flex-1 flex flex-col justify-between relative bg-black/95 backdrop-blur-xl text-white overflow-hidden rounded-3xl border border-white/10 p-7 sm:p-9 shadow-[0_20px_45px_rgba(0,0,0,0.15)] ring-1 ring-white/10 hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:-translate-y-2 hover:border-white/20 transition-all duration-300 group min-h-[260px]"
           >
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+            {/* Ambient Reflection */}
+            <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#65B5F5]/20 rounded-full blur-3xl group-hover:bg-[#65B5F5]/35 transition-all duration-300 pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
-            <div className="relative z-10 space-y-3">
+            <div className="relative z-10 space-y-3.5">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-[#65B5F5] font-semibold">
                   FOUNDER COMMITMENT
                 </span>
-                <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-[#34d399]/15 text-[#34d399] border border-[#34d399]/30">
+                <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-[#34d399]/15 text-[#34d399] border border-[#34d399]/30">
                   ● Direct Support
                 </span>
               </div>
-              <p className="text-sm sm:text-[15px] text-white/90 leading-relaxed italic">
+              <p className="text-sm sm:text-base text-white/90 leading-relaxed italic">
                 &ldquo;We don&apos;t take on 100 clients at once. Every system is scoped, built, and supported directly by me until it works flawlessly.&rdquo;
               </p>
             </div>
 
-            <div className="relative z-10 flex items-center justify-between pt-5 mt-4 border-t border-white/10">
+            <div className="relative z-10 flex items-center justify-between pt-6 mt-4 border-t border-white/10">
               <div>
                 <h3 className="font-bold text-base sm:text-lg text-white" style={{ fontFamily: "var(--font-heading)" }}>
                   Bryce Meizen

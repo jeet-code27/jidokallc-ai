@@ -50,7 +50,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="max-w-7xl flex flex-col justify-between mx-auto min-h-[30rem] sm:min-h-[34rem] md:min-h-[38rem] relative p-4 py-8 z-10">
           <div className="flex flex-col mb-12 sm:mb-20 md:mb-0 w-full">
             <div className="w-full flex flex-col items-center">
-              
+
               {/* Brand Logo & Description */}
               <div className="space-y-4 flex flex-col items-center flex-1 text-center">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-widest text-[#65B5F5]">
@@ -83,11 +83,11 @@ export const Footer: React.FC<FooterProps> = ({
                     <Link
                       key={index}
                       href={link.href}
-                      className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#65B5F5]/40 text-white/70 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm"
+                      className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#65B5F5]/40 text-white/75 hover:text-[#65B5F5] flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <div className="w-5 h-5 flex items-center justify-center">
+                      <div className="w-4 h-4 flex items-center justify-center text-current">
                         {link.icon}
                       </div>
                       <span className="sr-only">{link.label}</span>
@@ -133,7 +133,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Large background watermark text */}
-        <div 
+        <div
           className="bg-gradient-to-b from-white/15 via-white/[0.04] to-transparent bg-clip-text text-transparent leading-none absolute left-1/2 -translate-x-1/2 bottom-40 md:bottom-28 font-black tracking-tighter pointer-events-none select-none text-center px-4"
           style={{
             fontSize: 'clamp(4rem, 16vw, 13rem)',

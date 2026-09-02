@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 import CursorFollower from "@/components/ui/cursor-follower";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -29,8 +30,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <CursorFollower />
-        {children}
+        <SmoothScroll>
+          <CursorFollower />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

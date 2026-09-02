@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, useSpring, useTransform } from "motion/react";
+import { useSpring } from "motion/react";
+import { ScrollReveal } from "./ui/scroll-reveal";
 
 export default function RoiCalculatorSection() {
   const [hours, setHours] = useState<number>(12);
@@ -35,13 +36,13 @@ export default function RoiCalculatorSection() {
   }, [springValue]);
 
   return (
-    <section className="relative w-full bg-[#FAF8F5] text-black py-24 sm:py-32 px-5 sm:px-8 md:px-10 border-t border-black/10 select-none">
-      <div className="max-w-6xl mx-auto">
+    <section id="calculator" className="relative w-full bg-[#FAF8F5] text-black py-20 sm:py-28 px-5 sm:px-8 md:px-10 border-t border-black/10 select-none overflow-hidden">
+      <div className="max-w-7xl mx-auto">
         {/* =========================================================================
             1. SECTION HEADER (WITH BRAND HIGHLIGHT STICKER)
             ========================================================================= */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-[12px] font-mono uppercase tracking-widest text-black/70">
+        <ScrollReveal className="text-center max-w-3xl mx-auto mb-14 sm:mb-18 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 text-[12px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70">
             <span>DO THE MATH</span>
             <span>·</span>
             <span>ROI ESTIMATOR</span>
@@ -52,29 +53,34 @@ export default function RoiCalculatorSection() {
             style={{ fontFamily: "var(--font-heading)" }}
           >
             What is{" "}
-            <span className="relative inline-block mx-1 px-3 py-0.5 rounded-xl bg-[#65B5F5] text-black -rotate-1 shadow-sm font-extrabold border border-black/10">
+            <span className="relative inline-block mx-1.5 px-3.5 py-0.5 rounded-xl bg-[#65B5F5] text-black -rotate-1 shadow-sm font-extrabold border border-black/10">
               manual work
             </span>{" "}
             costing you right now?
           </h2>
 
-          <p className="text-base sm:text-xl text-black/70 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-black/70 leading-relaxed max-w-2xl mx-auto">
             Rough numbers are fine. The point is to understand the true order of magnitude.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* =========================================================================
             2. CALCULATOR GRID (SLIDERS LEFT, DYNAMIC RESULT CARD RIGHT)
             ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-          {/* Left Column: Interactive Sliders (7 Cols - Glassmorphic 3D) */}
-          <div className="lg:col-span-7 bg-white/75 backdrop-blur-xl border border-white/80 rounded-3xl p-6 sm:p-10 shadow-[0_15px_40px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.05] flex flex-col justify-between space-y-8 transition-all duration-300">
-            <div className="space-y-7">
+        <ScrollReveal delay={0.15}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+          
+          {/* Left Column: Interactive Sliders (Glassmorphic Box with Ambient Glow) */}
+          <div className="relative lg:col-span-7 bg-white/70 backdrop-blur-xl border border-white/80 rounded-3xl p-7 sm:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.03),0_1px_3px_rgba(0,0,0,0.02)] ring-1 ring-black/[0.05] hover:shadow-[0_20px_45px_rgba(0,0,0,0.06)] hover:bg-white/85 hover:border-black/15 transition-all duration-300 flex flex-col justify-between space-y-8 group overflow-hidden">
+            {/* Subtle top-right ambient reflection */}
+            <div className="absolute -top-20 -right-20 w-44 h-44 bg-[#65B5F5]/10 rounded-full blur-3xl group-hover:bg-[#65B5F5]/25 transition-all duration-300 pointer-events-none" />
+
+            <div className="relative z-10 space-y-7">
               {/* Slider 1: Hours per week */}
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm sm:text-base font-semibold text-black">
                   <span>Hours per week on repetitive tasks</span>
-                  <span className="font-mono text-base sm:text-lg font-bold px-3 py-1 bg-black/5 rounded-lg border border-black/10">
+                  <span className="font-mono text-base sm:text-lg font-bold px-3 py-1 bg-black/5 rounded-xl border border-black/10">
                     {hours} hrs/wk
                   </span>
                 </div>
@@ -86,7 +92,7 @@ export default function RoiCalculatorSection() {
                   onChange={(e) => setHours(Number(e.target.value))}
                   className="w-full h-2.5 bg-black/10 rounded-lg appearance-none cursor-pointer accent-[#65B5F5]"
                 />
-                <div className="flex justify-between text-xs font-mono text-black/40">
+                <div className="flex justify-between text-xs font-mono text-black/45">
                   <span>1 hr</span>
                   <span>20 hrs</span>
                   <span>40 hrs</span>
@@ -97,7 +103,7 @@ export default function RoiCalculatorSection() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm sm:text-base font-semibold text-black">
                   <span>Hourly cost of the person doing it</span>
-                  <span className="font-mono text-base sm:text-lg font-bold px-3 py-1 bg-black/5 rounded-lg border border-black/10">
+                  <span className="font-mono text-base sm:text-lg font-bold px-3 py-1 bg-black/5 rounded-xl border border-black/10">
                     ${rate} / hr
                   </span>
                 </div>
@@ -109,7 +115,7 @@ export default function RoiCalculatorSection() {
                   onChange={(e) => setRate(Number(e.target.value))}
                   className="w-full h-2.5 bg-black/10 rounded-lg appearance-none cursor-pointer accent-[#65B5F5]"
                 />
-                <div className="flex justify-between text-xs font-mono text-black/40">
+                <div className="flex justify-between text-xs font-mono text-black/45">
                   <span>$15/hr</span>
                   <span>$80/hr</span>
                   <span>$150/hr</span>
@@ -120,7 +126,7 @@ export default function RoiCalculatorSection() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm sm:text-base font-semibold text-black">
                   <span>How many team members do this work</span>
-                  <span className="font-mono text-base sm:text-lg font-bold px-3 py-1 bg-black/5 rounded-lg border border-black/10">
+                  <span className="font-mono text-base sm:text-lg font-bold px-3 py-1 bg-black/5 rounded-xl border border-black/10">
                     {people} {people === 1 ? "person" : "people"}
                   </span>
                 </div>
@@ -132,7 +138,7 @@ export default function RoiCalculatorSection() {
                   onChange={(e) => setPeople(Number(e.target.value))}
                   className="w-full h-2.5 bg-black/10 rounded-lg appearance-none cursor-pointer accent-[#65B5F5]"
                 />
-                <div className="flex justify-between text-xs font-mono text-black/40">
+                <div className="flex justify-between text-xs font-mono text-black/45">
                   <span>1 person</span>
                   <span>25 people</span>
                   <span>50 people</span>
@@ -143,7 +149,7 @@ export default function RoiCalculatorSection() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm sm:text-base font-semibold text-black">
                   <span>Weeks worked per year</span>
-                  <span className="font-mono text-base sm:text-lg font-bold px-3 py-1 bg-black/5 rounded-lg border border-black/10">
+                  <span className="font-mono text-base sm:text-lg font-bold px-3 py-1 bg-black/5 rounded-xl border border-black/10">
                     {weeks} weeks
                   </span>
                 </div>
@@ -155,7 +161,7 @@ export default function RoiCalculatorSection() {
                   onChange={(e) => setWeeks(Number(e.target.value))}
                   className="w-full h-2.5 bg-black/10 rounded-lg appearance-none cursor-pointer accent-[#65B5F5]"
                 />
-                <div className="flex justify-between text-xs font-mono text-black/40">
+                <div className="flex justify-between text-xs font-mono text-black/45">
                   <span>1 week</span>
                   <span>26 weeks</span>
                   <span>52 weeks (Full Year)</span>
@@ -163,15 +169,15 @@ export default function RoiCalculatorSection() {
               </div>
             </div>
 
-            <div className="text-xs font-mono text-black/50 pt-4 border-t border-black/5">
+            <div className="relative z-10 text-xs font-mono text-black/50 pt-4 border-t border-black/5">
               Drag any slider to update calculations in real-time.
             </div>
           </div>
 
-          {/* Right Column: High-Impact Result Card (5 Cols) */}
-          <div className="lg:col-span-5 bg-black text-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+          {/* Right Column: High-Impact Result Card (Dark Glassmorphic Box) */}
+          <div className="relative lg:col-span-5 bg-black/95 backdrop-blur-xl text-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-[0_20px_45px_rgba(0,0,0,0.15)] ring-1 ring-white/10 hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
             {/* Ambient Background Glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#65B5F5]/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-20 -right-20 w-56 h-56 bg-[#65B5F5]/20 rounded-full blur-3xl group-hover:bg-[#65B5F5]/35 transition-all duration-300 pointer-events-none" />
 
             <div className="relative z-10 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-mono tracking-widest uppercase text-[#65B5F5]">
@@ -199,7 +205,7 @@ export default function RoiCalculatorSection() {
                 of one person&apos;s time lost each year.
               </p>
 
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-white/60 leading-relaxed">
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs text-white/60 leading-relaxed backdrop-blur-md">
                 A rough operational estimate, not a quote. It doesn&apos;t count error correction, customer churn, or unbooked revenue.
               </div>
             </div>
@@ -218,6 +224,7 @@ export default function RoiCalculatorSection() {
             </div>
           </div>
         </div>
+      </ScrollReveal>
       </div>
     </section>
   );

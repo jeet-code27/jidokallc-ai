@@ -2,7 +2,8 @@
 
 import React from "react";
 import ProfileCard from "./ui/ProfileCard";
-import { Phone, Mail, Sparkles, CheckCircle2, ArrowUpRight, ShieldCheck, MapPin } from "lucide-react";
+import { Phone, Sparkles, CheckCircle2, ArrowUpRight, MapPin } from "lucide-react";
+import { ScrollReveal } from "./ui/scroll-reveal";
 
 export default function FounderSection() {
   const handleContactClick = () => {
@@ -10,13 +11,13 @@ export default function FounderSection() {
   };
 
   return (
-    <section id="about" className="relative w-full bg-[#FAF8F5] text-black py-20 sm:py-28 px-5 sm:px-8 md:px-10 border-t border-black/10 select-none">
+    <section id="about" className="relative w-full bg-[#FAF8F5] text-black py-20 sm:py-28 px-5 sm:px-8 md:px-10 border-t border-black/10 select-none overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* =========================================================================
             1. SECTION HEADER (MATCHING "SOFTWARE BUILT FOR YOUR SCALE" DESIGN)
             ========================================================================= */}
-        <div className="flex flex-col items-center justify-center text-center mb-14 sm:mb-18 space-y-5">
+        <ScrollReveal className="flex flex-col items-center justify-center text-center mb-14 sm:mb-18 space-y-5">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 text-[12px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70">
             <span>WHO YOU&apos;LL ACTUALLY TALK TO</span>
             <span>·</span>
@@ -37,21 +38,25 @@ export default function FounderSection() {
           <p className="text-base sm:text-lg text-black/70 max-w-2xl leading-relaxed">
             No sales reps or layers of junior account managers. You work directly with the engineer architecting and shipping your systems.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* =========================================================================
             2. TWO-COLUMN FOUNDER GRID
             ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <ScrollReveal delay={0.15}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* =========================================================================
-              LEFT COLUMN: Editorial Copy & Proof Cards
+              LEFT COLUMN: Editorial Copy & Proof Cards (Full Glassmorphic Effect)
               ========================================================================= */}
           <div className="lg:col-span-7 space-y-6">
             
-            {/* The Jidoka Philosophy Card */}
-            <div className="relative bg-white/80 backdrop-blur-xl border border-white/90 rounded-3xl p-7 sm:p-9 shadow-[0_10px_30px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.06] space-y-4">
-              <div className="flex items-center justify-between">
+            {/* The Jidoka Philosophy Card (Glassmorphic Container with Ambient Glow) */}
+            <div className="relative bg-white/70 backdrop-blur-xl border border-white/80 rounded-3xl p-7 sm:p-9 shadow-[0_10px_30px_rgba(0,0,0,0.03),0_1px_3px_rgba(0,0,0,0.02)] ring-1 ring-black/[0.05] hover:shadow-[0_25px_50px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)] hover:bg-white/90 hover:border-black/15 transition-all duration-300 group overflow-hidden space-y-4">
+              {/* Top-right ambient reflection */}
+              <div className="absolute -top-16 -right-16 w-36 h-36 bg-[#65B5F5]/10 rounded-full blur-2xl group-hover:bg-[#65B5F5]/25 transition-all duration-300 pointer-events-none" />
+
+              <div className="relative z-10 flex items-center justify-between">
                 <span className="text-xs font-mono uppercase tracking-wider text-[#65B5F5] font-semibold flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-[#65B5F5]" />
                   THE JIDOKA PRINCIPLE
@@ -62,51 +67,54 @@ export default function FounderSection() {
               </div>
 
               <blockquote
-                className="text-lg sm:text-xl font-medium text-black leading-snug"
+                className="relative z-10 text-lg sm:text-xl font-medium text-black leading-snug"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 &ldquo;I named the company after a manufacturing principle: machines handle the repetitive work, and stop the moment something requires human judgment. That&apos;s the whole idea here.&rdquo;
               </blockquote>
 
-              <p className="text-sm sm:text-base text-black/75 leading-relaxed pt-1">
+              <p className="relative z-10 text-sm sm:text-base text-black/75 leading-relaxed pt-1">
                 You won&apos;t be handed off to account managers. You talk to me, I build the thing, and I don&apos;t ship it until it runs reliably in the way your business actually operates.
               </p>
             </div>
 
-            {/* 3 Key Metric Proof Boxes */}
+            {/* 3 Key Metric Proof Boxes (Glassmorphic Cards) */}
             <div className="grid grid-cols-3 gap-3 sm:gap-4">
-              <div className="bg-white/70 backdrop-blur-xl border border-white/80 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] ring-1 ring-black/[0.05]">
+              <div className="relative bg-white/70 backdrop-blur-xl border border-white/80 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.05] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:bg-white/90 hover:border-black/15 transition-all duration-300 group overflow-hidden">
+                <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#65B5F5]/10 rounded-full blur-xl group-hover:bg-[#65B5F5]/20 pointer-events-none" />
                 <div
-                  className="text-2xl sm:text-3xl font-bold text-black"
+                  className="relative z-10 text-2xl sm:text-3xl font-bold text-black"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   25+
                 </div>
-                <div className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-black/60 mt-1">
+                <div className="relative z-10 text-[11px] sm:text-xs font-mono uppercase tracking-wider text-black/60 mt-1">
                   Systems Shipped
                 </div>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-xl border border-white/80 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] ring-1 ring-black/[0.05]">
+              <div className="relative bg-white/70 backdrop-blur-xl border border-white/80 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.05] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:bg-white/90 hover:border-black/15 transition-all duration-300 group overflow-hidden">
+                <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#65B5F5]/10 rounded-full blur-xl group-hover:bg-[#65B5F5]/20 pointer-events-none" />
                 <div
-                  className="text-2xl sm:text-3xl font-bold text-[#65B5F5]"
+                  className="relative z-10 text-2xl sm:text-3xl font-bold text-[#65B5F5]"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   2–4 Wks
                 </div>
-                <div className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-black/60 mt-1">
+                <div className="relative z-10 text-[11px] sm:text-xs font-mono uppercase tracking-wider text-black/60 mt-1">
                   Go-Live Speed
                 </div>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-xl border border-white/80 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] ring-1 ring-black/[0.05]">
+              <div className="relative bg-white/70 backdrop-blur-xl border border-white/80 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.05] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:bg-white/90 hover:border-black/15 transition-all duration-300 group overflow-hidden">
+                <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#65B5F5]/10 rounded-full blur-xl group-hover:bg-[#65B5F5]/20 pointer-events-none" />
                 <div
-                  className="text-2xl sm:text-3xl font-bold text-black"
+                  className="relative z-10 text-2xl sm:text-3xl font-bold text-black"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   1-on-1
                 </div>
-                <div className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-black/60 mt-1">
+                <div className="relative z-10 text-[11px] sm:text-xs font-mono uppercase tracking-wider text-black/60 mt-1">
                   Direct Engineering
                 </div>
               </div>
@@ -124,7 +132,7 @@ export default function FounderSection() {
 
               <a
                 href="tel:5084987168"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-white hover:bg-black/5 border border-black/15 text-black font-mono text-xs tracking-wider transition-all shadow-sm cursor-pointer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-white/80 hover:bg-white border border-black/15 text-black font-mono text-xs tracking-wider transition-all shadow-sm cursor-pointer backdrop-blur-md"
               >
                 <Phone className="w-3.5 h-3.5 text-black/70" />
                 <span>(508) 498-7168</span>
@@ -170,6 +178,7 @@ export default function FounderSection() {
           </div>
 
         </div>
+      </ScrollReveal>
       </div>
     </section>
   );
