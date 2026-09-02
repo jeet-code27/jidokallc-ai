@@ -172,7 +172,7 @@ export default function HeroLandingPage() {
           -------------------------------------------------------------------------- */}
       <video
         ref={videoRef}
-        src="https://res.cloudinary.com/dnd8u5sll/video/upload/v1788265920/Robot_mascot_animating_seamless_z5bifz.mp4"
+        src="https://res.cloudinary.com/dnd8u5sll/video/upload/v1788330965/Robot_turning_head_right_1080p_my32yy.mp4"
         muted
         playsInline
         preload="auto"
@@ -263,8 +263,8 @@ export default function HeroLandingPage() {
           -------------------------------------------------------------------------- */}
       <div
         className={`fixed inset-0 bg-white/95 backdrop-blur-sm flex flex-col justify-center px-8 gap-8 md:hidden transition-all duration-300 ${mobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
           }`}
         style={{ zIndex: 9 }}
       >
