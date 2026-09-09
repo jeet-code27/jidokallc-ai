@@ -19,7 +19,7 @@ export default function HomePage() {
       <Hero />
 
       {/* 3. Interactive Enterprise vs Boutique Audience Toggle Section */}
-      <div className="relative z-10 w-full">
+      <div id="systems" className="relative z-10 w-full">
         <AudienceToggleSection />
       </div>
 
@@ -33,8 +33,8 @@ export default function HomePage() {
           velocity={55}
           backgroundColor="#65B5F5"
           textColor="#000000"
-          className="text-[26px] sm:text-[40px] md:text-[50px] font-black tracking-normal uppercase px-6"
-          stripClassName="py-4 sm:py-6 border-y border-black/20 overflow-hidden select-none"
+          className="text-[14px] sm:text-[18px] md:text-[24px] font-bold tracking-wide uppercase px-4 sm:px-6"
+          stripClassName="py-2 sm:py-2.5 md:py-3 border-y border-black/15 overflow-hidden select-none"
         />
 
         {/* Strip 2: Dark Editorial Ribbon (#0D0D0D) */}
@@ -45,8 +45,8 @@ export default function HomePage() {
           velocity={-55}
           backgroundColor="#0D0D0D"
           textColor="#FFFFFF"
-          className="text-[26px] sm:text-[40px] md:text-[50px] font-black tracking-normal uppercase px-6 text-white"
-          stripClassName="py-4 sm:py-6 border-b border-black/20 overflow-hidden select-none"
+          className="text-[14px] sm:text-[18px] md:text-[24px] font-bold tracking-wide uppercase px-4 sm:px-6 text-white"
+          stripClassName="py-2 sm:py-2.5 md:py-3 border-b border-black/20 overflow-hidden select-none"
         />
       </div>
 

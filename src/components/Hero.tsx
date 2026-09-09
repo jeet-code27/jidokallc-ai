@@ -4,14 +4,18 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 
 interface HeroProps {
   videoUrl?: string;
+  headline?: string;
+  subheadline?: string;
   introText?: string;
   pillActions?: string[];
   contactEmail?: string;
 }
 
 export default function Hero({
-  videoUrl = "https://res.cloudinary.com/dnd8u5sll/video/upload/v1788331664/Jidoka_website_header_video_gcjjra.mp4",
-  introText = "Hey there, meet Jidoka,\nCustom AI Agents & Automation · Worcester, MA",
+  videoUrl = "https://res.cloudinary.com/dnd8u5sll/video/upload/v1788950002/Untitled_design_pqfdk7.mp4",
+  headline = "Automation with a human touch.",
+  subheadline = "Custom AI Agents & Intelligent Systems · Worcester, MA",
+  introText,
   pillActions = [
     "See our 25+ systems",
     "Voice AI & Receptionists",
@@ -162,29 +166,55 @@ export default function Hero({
           2. HERO CONTENT SECTION (Z-INDEX: 1)
           -------------------------------------------------------------------------- */}
       <div
-        className="relative min-h-screen w-full flex flex-col justify-end pb-12 md:justify-center md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden"
+        className="relative min-h-screen min-h-[100dvh] w-full flex flex-col justify-between md:justify-center pt-24 pb-8 sm:pt-28 sm:pb-10 md:py-0 px-5 sm:px-8 md:px-10 overflow-hidden"
         style={{ zIndex: 1 }}
       >
-        <div className="max-w-xl relative z-10 w-full">
-          {/* 1. Intro label */}
-          <div
-            className="select-none mb-6 sm:mb-8 text-black/80 font-normal"
-            style={{
-              fontSize: "clamp(18px, 4vw, 26px)",
-              lineHeight: 1.3,
-            }}
-          >
-            {introText.split("\n").map((line, idx) => (
-              <React.Fragment key={idx}>
-                {line}
-                {idx < introText.split("\n").length - 1 && <br />}
-              </React.Fragment>
-            ))}
+        <div className="max-w-xl relative z-10 w-full flex flex-col justify-between md:justify-center flex-1 md:flex-initial">
+          {/* 1. Brand Intro / Headline (At top on mobile, centered on desktop) */}
+          <div className="pt-2 sm:pt-4 md:pt-0 mb-auto md:mb-8 select-none">
+            {introText ? (
+              <div
+                className="text-black font-semibold"
+                style={{
+                  fontSize: "clamp(20px, 4.2vw, 30px)",
+                  lineHeight: 1.3,
+                }}
+              >
+                {introText.split("\n").map((line, idx) => (
+                  <React.Fragment key={idx}>
+                    {line}
+                    {idx < introText.split("\n").length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </div>
+            ) : (
+              <>
+                <h1
+                  className="text-black font-bold tracking-tight"
+                  style={{
+                    fontFamily: "var(--font-heading)",
+                    fontSize: "clamp(22px, 4.2vw, 36px)",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {headline}
+                </h1>
+                <p
+                  className="text-black/75 font-medium mt-2 sm:mt-3"
+                  style={{
+                    fontSize: "clamp(13px, 2.5vw, 16px)",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {subheadline}
+                </p>
+              </>
+            )}
           </div>
 
-          {/* 2. Action pill buttons */}
+          {/* 2. Action pill buttons (At bottom on mobile, right below text on desktop) */}
           <div
-            className="flex flex-wrap gap-y-1 transition-all duration-400 ease-out"
+            className="flex flex-wrap gap-y-1.5 transition-all duration-400 ease-out mt-auto md:mt-0 pb-1 sm:pb-2 md:pb-0"
             style={{
               opacity: pillsVisible ? 1 : 0,
               transform: pillsVisible ? "translateY(0)" : "translateY(8px)",
@@ -195,6 +225,12 @@ export default function Hero({
               <button
                 key={action}
                 type="button"
+                onClick={() => {
+                  const target = document.getElementById("systems");
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer shadow-sm"
               >
                 {action}
@@ -205,7 +241,7 @@ export default function Hero({
             <button
               type="button"
               onClick={handleCopyEmail}
-              className="inline-flex items-center justify-center text-white bg-transparent border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap gap-2 sm:gap-3 hover:bg-white hover:text-black transition-colors duration-200 cursor-pointer group shadow-sm"
+              className="inline-flex items-center justify-center text-white bg-black/20 md:bg-transparent backdrop-blur-xs md:backdrop-blur-none border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap gap-2 sm:gap-3 hover:bg-white hover:text-black transition-colors duration-200 cursor-pointer group shadow-sm"
               title="Click to copy email address"
             >
               <span>
