@@ -37,21 +37,22 @@ export default function SiteFooter() {
   ];
 
   const navLinks = [
-    { label: "Products", href: "#products" },
+    { label: "Solutions", href: "#systems" },
+    { label: "Marketplace", href: "#marketplace" },
     { label: "Approach", href: "#approach" },
     { label: "ROI Estimator", href: "#calculator" },
-    { label: "About Founder", href: "#about" },
+    { label: "Founder", href: "#about" },
     { label: "Results", href: "#results" },
-    { label: "Book a Chat", href: "mailto:inbox@jidokallc.com?subject=Coffee%20Chat" },
+    { label: "Discuss Project", href: "mailto:inbox@jidokallc.com?subject=Project%20Inquiry" },
   ];
 
   return (
     <Footer
       brandName="JIDOKA"
-      brandDescription="Personalized AI agent & automation studio. Built one business at a time in Worcester, MA. Talk directly with the builder."
+      brandDescription="Applied AI studio building custom AI agents, automated workflows, and enterprise infrastructure. Automation with a human touch."
       socialLinks={socialLinks}
       navLinks={navLinks}
-      creatorName="Bryce Meizen"
+      creatorName="JIDOKA"
       creatorUrl="mailto:inbox@jidokallc.com"
     />
   );

@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 
+import Image from "next/image";
+
 interface NavbarProps {
   navLinks?: string[];
   ctaText?: string;
@@ -9,9 +11,9 @@ interface NavbarProps {
 }
 
 export default function Navbar({
-  navLinks = ["Products", "Approach", "Results", "About"],
-  ctaText = "Book a Coffee Chat",
-  ctaHref = "#contact",
+  navLinks = ["Solutions", "Marketplace", "Approach", "Founder", "Results"],
+  ctaText = "Discuss Your Project",
+  ctaHref = "mailto:inbox@jidokallc.com?subject=Project%20Inquiry",
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -27,24 +29,30 @@ export default function Navbar({
   return (
     <>
       {/* --------------------------------------------------------------------------
-          FLOATING CURVED CAPSULE NAVBAR (Z-INDEX: 50)
+          FLOATING CURVED CAPSULE NAVBAR (Z-INDEX: 40, DOCKED UNDER TOP BANNER)
           -------------------------------------------------------------------------- */}
-      <header className="fixed top-3 sm:top-5 inset-x-0 mx-auto max-w-5xl px-3 sm:px-6 z-50 select-none">
+      <header className="fixed top-[3.25rem] sm:top-[3.75rem] inset-x-0 mx-auto max-w-5xl px-3 sm:px-6 z-40 select-none">
         <nav
-          className={`w-full rounded-full border px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between transition-all duration-300 ring-1 ring-black/[0.04] ${
-            scrolled
-              ? "bg-white/65 backdrop-blur-2xl border-white/60 shadow-xl shadow-black/10"
-              : "bg-white/45 backdrop-blur-xl border-white/40 shadow-lg shadow-black/5"
-          }`}
+          className={`w-full rounded-full border px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between transition-all duration-300 ring-1 ring-black/[0.04] ${scrolled
+              ? "bg-white/85 backdrop-blur-2xl border-white/75 shadow-xl shadow-black/10"
+              : "bg-white/70 backdrop-blur-xl border-white/60 shadow-lg shadow-black/5"
+            }`}
         >
-          {/* Left: Logo */}
+          {/* Left: Official Jidoka Logo Image (Dark text version for crisp visibility on white capsule) */}
           <div className="flex items-center gap-2">
             <a
               href="/"
-              className="text-[19px] sm:text-[22px] tracking-tight text-black font-semibold leading-none cursor-pointer hover:opacity-75 transition-opacity"
-              style={{ fontFamily: "var(--font-heading)" }}
+              className="flex items-center gap-2 cursor-pointer hover:opacity-85 transition-opacity py-0.5"
+              aria-label="Jidoka Home"
             >
-              Jidoka®
+              <Image
+                src="/images/logo-jidoka.png"
+                alt="Jidoka"
+                width={130}
+                height={35}
+                className="h-7 sm:h-8 w-auto object-contain"
+                priority
+              />
             </a>
           </div>
 
@@ -54,7 +62,7 @@ export default function Navbar({
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-[14px] sm:text-[15px] font-medium text-black/75 hover:text-black hover:bg-black/5 px-3.5 py-1.5 rounded-full transition-all duration-200"
+                className="text-[13px] sm:text-[14px] font-medium text-black/75 hover:text-black hover:bg-black/5 px-3 py-1.5 rounded-full transition-all duration-200"
               >
                 {link}
               </a>
@@ -65,13 +73,13 @@ export default function Navbar({
           <div className="hidden md:flex items-center gap-3">
             <a
               href="tel:5084987168"
-              className="text-[13px] font-mono text-black/70 hover:text-black transition-colors"
+              className="text-[12px] sm:text-[13px] font-mono text-black/70 hover:text-black transition-colors"
             >
               (508) 498-7168
             </a>
             <a
               href={ctaHref}
-              className="inline-flex items-center justify-center bg-black text-white hover:bg-black/85 text-[13px] sm:text-[14px] font-medium px-4 sm:px-5 py-2 rounded-full transition-all duration-200 shadow-sm cursor-pointer"
+              className="inline-flex items-center justify-center bg-black text-white hover:bg-black/85 text-[12px] sm:text-[13px] font-medium px-4 sm:px-5 py-2 rounded-full transition-all duration-200 shadow-sm cursor-pointer"
             >
               {ctaText}
             </a>
@@ -86,19 +94,16 @@ export default function Navbar({
             aria-expanded={mobileMenuOpen}
           >
             <span
-              className={`w-5 h-[2px] bg-black transition-all duration-300 transform ${
-                mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
-              }`}
+              className={`w-5 h-[2px] bg-black transition-all duration-300 transform ${mobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
+                }`}
             />
             <span
-              className={`w-5 h-[2px] bg-black transition-all duration-300 ${
-                mobileMenuOpen ? "opacity-0" : "opacity-100"
-              }`}
+              className={`w-5 h-[2px] bg-black transition-all duration-300 ${mobileMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
             />
             <span
-              className={`w-5 h-[2px] bg-black transition-all duration-300 transform ${
-                mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-              }`}
+              className={`w-5 h-[2px] bg-black transition-all duration-300 transform ${mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+                }`}
             />
           </button>
         </nav>
@@ -108,17 +113,15 @@ export default function Navbar({
           MOBILE OVERLAY DRAWER (Z-INDEX: 40)
           -------------------------------------------------------------------------- */}
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm md:hidden transition-opacity duration-300 z-40 ${
-          mobileMenuOpen
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm md:hidden transition-opacity duration-300 z-40 ${mobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        }`}
+          }`}
         onClick={() => setMobileMenuOpen(false)}
       >
         <div
-          className={`absolute top-20 inset-x-4 bg-white/80 backdrop-blur-2xl border border-white/60 rounded-3xl p-6 shadow-2xl shadow-black/10 flex flex-col gap-4 transition-all duration-300 transform ${
-            mobileMenuOpen ? "translate-y-0 scale-100" : "-translate-y-4 scale-95"
-          }`}
+          className={`absolute top-20 inset-x-4 bg-white/80 backdrop-blur-2xl border border-white/60 rounded-3xl p-6 shadow-2xl shadow-black/10 flex flex-col gap-4 transition-all duration-300 transform ${mobileMenuOpen ? "translate-y-0 scale-100" : "-translate-y-4 scale-95"
+            }`}
           onClick={(e) => e.stopPropagation()}
         >
           {navLinks.map((link) => (

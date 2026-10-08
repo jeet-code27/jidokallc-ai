@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Jidoka® — Adaptive Response Interface Agent",
+  title: "Jidoka — Custom AI Agents & Enterprise Workflows",
   description: "Custom AI Agents & Intelligent Automation for Modern Businesses.",
 };
 

@@ -3,8 +3,10 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 
 interface HeroProps {
+  activeTrack?: "business" | "enterprise";
   videoUrl?: string;
   headline?: string;
+  eyebrow?: string;
   subheadline?: string;
   introText?: string;
   pillActions?: string[];
@@ -12,16 +14,32 @@ interface HeroProps {
 }
 
 export default function Hero({
+  activeTrack = "business",
   videoUrl = "https://res.cloudinary.com/dnd8u5sll/video/upload/v1788950002/Untitled_design_pqfdk7.mp4",
-  headline = "Automation with a human touch.",
-  subheadline = "Custom AI Agents & Intelligent Systems · Worcester, MA",
+  headline,
+  eyebrow,
+  subheadline,
   introText,
   pillActions = [
     "See our 25+ systems",
-    "Voice AI & Receptionists",
+    "Explore Marketplace",
   ],
   contactEmail = "inbox@jidokallc.com",
 }: HeroProps) {
+  const isEnterprise = activeTrack === "enterprise";
+
+  const effectiveEyebrow =
+    eyebrow || "Get 15 hours back in your week.";
+  const effectiveHeadline =
+    headline ||
+    (isEnterprise
+      ? "The end of dinosaur-era repetitive processes."
+      : "Build a business you love.");
+  const effectiveSubheadline =
+    subheadline ||
+    (isEnterprise
+      ? "Mission-Critical AI Fleets & High-Concurrency Systems"
+      : "Custom AI Agents & Intelligent Systems");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const prevXRef = useRef<number | null>(null);
   const targetTimeRef = useRef<number>(0);
@@ -166,7 +184,7 @@ export default function Hero({
           2. HERO CONTENT SECTION (Z-INDEX: 1)
           -------------------------------------------------------------------------- */}
       <div
-        className="relative min-h-screen min-h-[100dvh] w-full flex flex-col justify-between md:justify-center pt-24 pb-8 sm:pt-28 sm:pb-10 md:py-0 px-5 sm:px-8 md:px-10 overflow-hidden"
+        className="relative min-h-screen min-h-[100dvh] w-full flex flex-col justify-between md:justify-center pt-32 pb-8 sm:pt-36 sm:pb-10 md:py-0 px-5 sm:px-8 md:px-10 overflow-hidden"
         style={{ zIndex: 1 }}
       >
         <div className="max-w-xl relative z-10 w-full flex flex-col justify-between md:justify-center flex-1 md:flex-initial">
@@ -189,24 +207,30 @@ export default function Hero({
               </div>
             ) : (
               <>
+                {/* Small H3 / Eyebrow requested by client */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/10 backdrop-blur-md border border-black/15 text-[11px] sm:text-[13px] font-semibold tracking-wide text-black mb-3.5 shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-[#65B5F5] animate-pulse" />
+                  <h3 className="inline font-semibold">{effectiveEyebrow}</h3>
+                </div>
+
                 <h1
                   className="text-black font-bold tracking-tight"
                   style={{
                     fontFamily: "var(--font-heading)",
-                    fontSize: "clamp(22px, 4.2vw, 36px)",
-                    lineHeight: 1.25,
+                    fontSize: "clamp(26px, 4.4vw, 42px)",
+                    lineHeight: 1.2,
                   }}
                 >
-                  {headline}
+                  {effectiveHeadline}
                 </h1>
                 <p
-                  className="text-black/75 font-medium mt-2 sm:mt-3"
+                  className="text-black/80 font-medium mt-2.5 sm:mt-3"
                   style={{
-                    fontSize: "clamp(13px, 2.5vw, 16px)",
-                    lineHeight: 1.4,
+                    fontSize: "clamp(14px, 2.5vw, 17px)",
+                    lineHeight: 1.45,
                   }}
                 >
-                  {subheadline}
+                  {effectiveSubheadline}
                 </p>
               </>
             )}

@@ -65,7 +65,7 @@ export default function TestimonialComponent() {
           timelineRef={testimonialRef}
           className="text-base sm:text-lg text-black/70 max-w-2xl mx-auto leading-relaxed"
         >
-          Here is what happens when you eliminate manual operational drag and talk directly to the engineer who builds the system.
+          Here is what happens when you eliminate manual operational drag and deploy purpose-built AI systems designed around your business.
         </TimelineContent>
       </div>
 
@@ -128,7 +128,7 @@ export default function TestimonialComponent() {
             </div>
           </TimelineContent>
 
-          {/* Card 2: Sneaker Boutique (Brand Blue Glass Card) */}
+          {/* Card 2: Sneaker Retailer (Brand Blue Glass Card) */}
           <TimelineContent
             animationNum={4}
             customVariants={revealVariants}
@@ -154,7 +154,7 @@ export default function TestimonialComponent() {
                 <h3 className="font-bold text-base text-black" style={{ fontFamily: "var(--font-heading)" }}>
                   Marcus Thorne
                 </h3>
-                <p className="text-xs text-black/70 font-mono">Founder · SoleVault Worcester</p>
+                <p className="text-xs text-black/70 font-mono">Founder · SoleVault (Retail & E-Commerce)</p>
               </div>
               <div className="w-11 h-11 rounded-2xl overflow-hidden border border-black/20 relative shrink-0 shadow-sm">
                 <Image
@@ -273,14 +273,14 @@ export default function TestimonialComponent() {
             <div className="relative z-10 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-mono tracking-wider text-[#65B5F5] font-bold uppercase">
-                  DIRECT ACCESS · DWY MODEL
+                  ENGINEERING VELOCITY · DWY MODEL
                 </span>
                 <span className="inline-block text-[12px] font-semibold px-3 py-1 rounded-full bg-[#65B5F5]/15 text-black border border-[#65B5F5]/40 font-mono shadow-sm">
-                  1-on-1 Build
+                  Collaborative Build
                 </span>
               </div>
               <p className="text-sm sm:text-base text-black/75 leading-relaxed">
-                &ldquo;Direct access to the builder made all the difference. No agency telephone game. We got a custom pipeline running in 2 weeks flat.&rdquo;
+                &ldquo;Direct collaboration with the engineering team made all the difference. No agency telephone game. We got a custom pipeline running in 2 weeks flat.&rdquo;
               </p>
             </div>
 

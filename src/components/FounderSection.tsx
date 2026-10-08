@@ -19,9 +19,9 @@ export default function FounderSection() {
             ========================================================================= */}
         <ScrollReveal className="flex flex-col items-center justify-center text-center mb-14 sm:mb-18 space-y-5">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 text-[12px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70">
-            <span>WHO YOU&apos;LL ACTUALLY TALK TO</span>
+            <span>LEADERSHIP & ARCHITECTURE</span>
             <span>·</span>
-            <span>WORCESTER, MA</span>
+            <span>NATIONWIDE & REMOTE</span>
           </div>
 
           <h2
@@ -30,13 +30,13 @@ export default function FounderSection() {
           >
             The{" "}
             <span className="relative inline-block mx-1.5 sm:mx-2 px-3.5 sm:px-4 py-0.5 sm:py-1 rounded-2xl bg-[#65B5F5] text-black -rotate-2 font-extrabold shadow-sm border border-black/10">
-              Expert Engineer
+              Expert Engineering
             </span>{" "}
-            By Your Side
+            Behind Your System
           </h2>
 
           <p className="text-base sm:text-lg text-black/70 max-w-2xl leading-relaxed">
-            No sales reps or layers of junior account managers. You work directly with the engineer architecting and shipping your systems.
+            No agency telephone game or layers of junior account reps. Every system is engineered with technical rigor to ensure it scales cleanly with your business.
           </p>
         </ScrollReveal>
 
@@ -74,7 +74,7 @@ export default function FounderSection() {
               </blockquote>
 
               <p className="relative z-10 text-sm sm:text-base text-black/75 leading-relaxed pt-1">
-                You won&apos;t be handed off to account managers. You talk to me, I build the thing, and I don&apos;t ship it until it runs reliably in the way your business actually operates.
+                We engineer deterministic software systems paired with modern frontier models to solve tangible operational bottlenecks—ensuring reliability, auditability, and zero hallucinated mistakes.
               </p>
             </div>
 
@@ -112,10 +112,10 @@ export default function FounderSection() {
                   className="relative z-10 text-2xl sm:text-3xl font-bold text-black"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
-                  1-on-1
+                  99.9%
                 </div>
                 <div className="relative z-10 text-[11px] sm:text-xs font-mono uppercase tracking-wider text-black/60 mt-1">
-                  Direct Engineering
+                  Production SLA
                 </div>
               </div>
             </div>
@@ -123,10 +123,10 @@ export default function FounderSection() {
             {/* Action Buttons & Phone */}
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
               <a
-                href="mailto:inbox@jidokallc.com?subject=Coffee%20Chat%20with%20Bryce"
+                href="mailto:inbox@jidokallc.com?subject=Project%20Inquiry%20with%20Jidoka"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-black hover:bg-black/85 text-white font-semibold text-sm transition-all shadow-[0_10px_25px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 cursor-pointer"
               >
-                <span>Book a Free Coffee Chat</span>
+                <span>Discuss Your Project</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </a>
 
@@ -136,7 +136,7 @@ export default function FounderSection() {
               >
                 <Phone className="w-3.5 h-3.5 text-black/70" />
                 <span>(508) 498-7168</span>
-                <span className="text-black/40 text-[11px] font-sans">(Bryce picks up)</span>
+                <span className="text-black/40 text-[11px] font-sans">(Direct Line)</span>
               </a>
             </div>
 
@@ -144,11 +144,11 @@ export default function FounderSection() {
             <div className="flex flex-wrap items-center gap-5 pt-1 text-xs text-black/60 font-mono">
               <span className="inline-flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#34d399]" />
-                Zero Offshore Handoffs
+                Enterprise-Grade Architecture
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#65B5F5]" />
-                Worcester, MA (On-site & Remote)
+                Remote & On-Site Deployments (Nationwide)
               </span>
             </div>
           </div>

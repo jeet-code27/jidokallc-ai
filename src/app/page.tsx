@@ -1,7 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import TopTrackBanner, { SiteTrack } from "@/components/TopTrackBanner";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AudienceToggleSection from "@/components/AudienceToggleSection";
+import MarketplaceSection from "@/components/MarketplaceSection";
 import ScrollVelocity from "@/components/ui/scroll-velocity";
 import BrandPhilosophySection from "@/components/BrandPhilosophySection";
 import RoiCalculatorSection from "@/components/RoiCalculatorSection";
@@ -10,25 +14,36 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import SiteFooter from "@/components/SiteFooter";
 
 export default function HomePage() {
+  const [activeTrack, setActiveTrack] = useState<SiteTrack>("business");
+
   return (
     <div className="relative min-h-screen w-full bg-black text-black">
-      {/* 1. Top Fixed Frosted Capsule Navbar */}
+      {/* 1. Top 50-50 Business vs Enterprise Split Switcher Banner */}
+      <TopTrackBanner
+        activeTrack={activeTrack}
+        onSelectTrack={setActiveTrack}
+      />
+
+      {/* 2. Floating Frosted Capsule Navbar with Official Jidoka Logo */}
       <Navbar />
 
-      {/* 2. Hero Section with Interactive Mouse-Scrub Video */}
-      <Hero />
+      {/* 3. Hero Section with Dynamic Headline (Business vs Enterprise) & Mouse-Scrub Video */}
+      <Hero activeTrack={activeTrack} />
 
-      {/* 3. Interactive Enterprise vs Boutique Audience Toggle Section */}
-      <div id="systems" className="relative z-10 w-full">
-        <AudienceToggleSection />
+      {/* 4. Interactive Solutions & System Catalog Section (Synced with Top Banner) */}
+      <div id="solutions" className="relative z-10 w-full">
+        <AudienceToggleSection
+          activeTrack={activeTrack}
+          onTrackChange={setActiveTrack}
+        />
       </div>
 
-      {/* 4. Dual Stacked Marquee Ribbon Section (#65B5F5 Blue + #0D0D0D Dark) */}
+      {/* 5. Dual Stacked Marquee Ribbon Section (#65B5F5 Blue + #0D0D0D Dark) */}
       <div className="relative z-10 w-full overflow-hidden shadow-md">
         {/* Strip 1: Brand Blue Ribbon (#65B5F5) */}
         <ScrollVelocity
           texts={[
-            "CUSTOM AI AGENTS \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 SCALING THE UNSCALABLE \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 HIGHLEVEL AUTOMATION SYSTEMS \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 ZERO MANUAL DRAG \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0",
+            "CUSTOM AI AGENTS \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 SCALING THE UNSCALABLE \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 BUSINESS & ENTERPRISE ARCHITECTURE \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 ZERO MANUAL DRAG \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0",
           ]}
           velocity={55}
           backgroundColor="#65B5F5"
@@ -40,7 +55,7 @@ export default function HomePage() {
         {/* Strip 2: Dark Editorial Ribbon (#0D0D0D) */}
         <ScrollVelocity
           texts={[
-            "PIONEERS IN AI AUTOMATION \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 25+ SYSTEMS SHIPPED \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 24/7 VOICE AGENTS \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 TALK TO THE BUILDER \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0",
+            "PIONEERS IN AI AUTOMATION \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 25+ SYSTEMS SHIPPED \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 24/7 VOICE AGENTS \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0 NATIONWIDE DEPLOYMENTS \u00A0\u00A0\u00A0/\u00A0\u00A0\u00A0",
           ]}
           velocity={-55}
           backgroundColor="#0D0D0D"
@@ -50,27 +65,32 @@ export default function HomePage() {
         />
       </div>
 
-      {/* 5. Core Philosophy Showcase ("Jidoka means automation with a human touch") */}
-      <div className="relative z-10 w-full">
+      {/* 6. The Jidoka Marketplace (Do-It-Yourself Kits & Implementation Playbooks) */}
+      <div id="marketplace" className="relative z-10 w-full">
+        <MarketplaceSection />
+      </div>
+
+      {/* 7. Core Philosophy Showcase ("Jidoka means automation with a human touch") */}
+      <div id="approach" className="relative z-10 w-full">
         <BrandPhilosophySection />
       </div>
 
-      {/* 6. Interactive ROI Drain Calculator Section */}
-      <div className="relative z-10 w-full">
+      {/* 8. Interactive ROI Drain Calculator Section */}
+      <div id="calculator" className="relative z-10 w-full">
         <RoiCalculatorSection />
       </div>
 
-      {/* 6. Founder Section: Bryce Meizen + 3D ProfileCard */}
-      <div className="relative z-10 w-full">
+      {/* 9. Founder Section: Bryce Meizen + 3D Interactive ProfileCard */}
+      <div id="founder" className="relative z-10 w-full">
         <FounderSection />
       </div>
 
-      {/* 7. Client Testimonials Section (Bento Grid + Timeline Animation) */}
-      <div className="relative z-10 w-full">
+      {/* 10. Client Testimonials Section (Bento Grid + Timeline Animation) */}
+      <div id="results" className="relative z-10 w-full">
         <TestimonialsSection />
       </div>
 
-      {/* 8. Modern Animated Brand Footer */}
+      {/* 11. Modern Animated Brand Footer */}
       <SiteFooter />
     </div>
   );

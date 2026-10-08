@@ -19,7 +19,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-type AudienceTrack = "boutique" | "enterprise";
+type AudienceTrack = "business" | "enterprise";
 
 export interface SystemItem {
   id: string;
@@ -59,11 +59,11 @@ interface TrackContent {
 }
 
 const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
-  boutique: {
-    tag: "FOR LOCAL BUSINESSES, CLINICS & CONTRACTORS",
+  business: {
+    tag: "FOR MODERN BUSINESSES, CLINICS & GROWING TEAMS",
     headline: "Stop Losing Revenue to Repetitive Manual Work",
     subheadline:
-      "Custom software built for how your business actually runs. Replace lost phone calls, manual spreadsheets, and weekend admin work in 2–4 weeks.",
+      "Custom software and autonomous agents built for how your business actually runs. Replace lost phone calls, manual spreadsheets, and weekend admin work in 2–4 weeks.",
     stats: [
       {
         value: "90 Sec",
@@ -129,34 +129,47 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
     ],
     approaches: [
       {
+        title: "Do It Yourself (DIY)",
+        subtitle: "Workflows & Playbooks",
+        description:
+          "Self-directed AI workflows, setup blueprints, and step-by-step playbooks ready for your internal team to implement immediately.",
+        forWho: "Hands-on teams & operators wanting proven implementation blueprints",
+        features: [
+          "Downloadable workflow blueprints",
+          "Tool configuration guides & templates",
+          "Step-by-step SOPs & prompt packs",
+          "Direct marketplace skill pack access",
+        ],
+      },
+      {
         title: "Done With You (DWY)",
         subtitle: "Collaborative Build",
         description:
-          "We build your core automation, train you to manage it easily, and provide 30 days of direct support. You own everything.",
-        forWho: "Owners who want complete control without learning code",
+          "We build your core automations alongside your team, provide comprehensive training, and deliver 30 days of dedicated support.",
+        forWho: "Owners who want custom leverage without writing code",
         features: [
-          "Workflow audit & blueprint",
-          "First 2 custom automations built",
-          "Live 1-on-1 team training",
-          "30 days direct support with builder",
+          "Workflow audit & operational blueprint",
+          "First 2 custom automations built & deployed",
+          "Hands-on 1-on-1 team training",
+          "30 days dedicated post-launch support",
         ],
         isPopular: true,
       },
       {
         title: "Done For You (DFY)",
-        subtitle: "Hands-Off Managed Studio",
+        subtitle: "Turnkey Managed Studio",
         description:
-          "We build, host, and maintain your systems. You get your hours back and never have to open the hood.",
+          "We design, build, host, and maintain your AI infrastructure. You get your hours back and never have to open the hood.",
         forWho: "Busy business owners whose time is too valuable for software upkeep",
         features: [
           "Full custom build & integration",
           "Continuous uptime monitoring",
-          "Unlimited minor adjustments",
-          "Direct phone & text line to Bryce",
+          "Ongoing model tuning & adjustments",
+          "Priority engineering support channel",
         ],
       },
     ],
-    ctaText: "Book a Free 30-Min Coffee Chat",
+    ctaText: "Discuss Your Project",
     ctaSub: "We map where your hours are leaking and show what we'd automate first.",
   },
   enterprise: {
@@ -229,18 +242,17 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
     ],
     approaches: [
       {
-        title: "Managed Studio (DFY)",
-        subtitle: "Dedicated Engineering Fleet",
+        title: "Architectural Blueprint (DIY)",
+        subtitle: "Technical Specifications",
         description:
-          "We design, build, deploy, and continuously monitor your custom AI infrastructure. You get direct access to the builder with guaranteed SLAs.",
-        forWho: "Enterprises needing turnkey speed without headcount overhead",
+          "Bespoke system designs, data pipeline schemas, and security specifications for your in-house developers to build.",
+        forWho: "Organizations with engineering teams wanting proven architecture",
         features: [
-          "Bespoke multi-agent system design",
-          "Dedicated named lead engineer",
-          "24/7 uptime & latency monitoring",
-          "Continuous updates & model tuning",
+          "Custom multi-agent architecture schemas",
+          "Security, boundary & compliance protocols",
+          "API & legacy ERP mapping specs",
+          "Executive technical roadmap & review",
         ],
-        isPopular: true,
       },
       {
         title: "Collaborative Architecture (DWY)",
@@ -255,15 +267,43 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
           "60 days dedicated co-pilot support",
         ],
       },
+      {
+        title: "Managed Enterprise Fleet (DFY)",
+        subtitle: "Dedicated Engineering Fleet",
+        description:
+          "We design, build, deploy, and continuously monitor your custom AI infrastructure with guaranteed SLAs.",
+        forWho: "Enterprises needing turnkey speed without headcount overhead",
+        features: [
+          "Bespoke multi-agent system design",
+          "Dedicated named lead engineer",
+          "24/7 uptime & latency monitoring",
+          "Continuous updates & model tuning",
+        ],
+        isPopular: true,
+      },
     ],
     ctaText: "Schedule an Enterprise Architecture Review",
-    ctaSub: "Direct technical consultation with our engineering lead — no sales decks.",
+    ctaSub: "Direct technical consultation with our engineering team — no sales decks.",
   },
 };
 
-export default function AudienceToggleSection() {
-  const [activeTrack, setActiveTrack] = useState<AudienceTrack>("boutique");
+interface AudienceToggleSectionProps {
+  activeTrack?: AudienceTrack;
+  onTrackChange?: (track: AudienceTrack) => void;
+}
+
+export default function AudienceToggleSection({
+  activeTrack: controlledTrack,
+  onTrackChange,
+}: AudienceToggleSectionProps = {}) {
+  const [internalTrack, setInternalTrack] = useState<AudienceTrack>("business");
+  const activeTrack = controlledTrack ?? internalTrack;
   const [selectedSystem, setSelectedSystem] = useState<SystemItem | null>(null);
+
+  const handleTrackChange = (track: AudienceTrack) => {
+    setInternalTrack(track);
+    onTrackChange?.(track);
+  };
 
   const content = TRACK_DATA[activeTrack];
 
@@ -274,7 +314,7 @@ export default function AudienceToggleSection() {
             1. TOP TOGGLE PILL BAR
             ========================================================================= */}
         <div className="flex flex-col items-center justify-center text-center mb-12 sm:mb-16 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-[12px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-full bg-black/5 border border-black/10 text-[11px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70 whitespace-nowrap">
             <span>Tailored Solutions</span>
             <span>·</span>
             <span>Select Your Track</span>
@@ -290,35 +330,36 @@ export default function AudienceToggleSection() {
             </span>
           </h2>
 
-          {/* Interactive Segmented Pill Switch */}
+          {/* Interactive Segmented Pill Switch (Responsive, single-line on mobile) */}
           <div className="relative inline-flex p-1.5 rounded-full bg-black/5 border border-black/15 shadow-inner">
-            {/* Boutique Button */}
+            {/* Business Button */}
             <button
               type="button"
-              onClick={() => setActiveTrack("boutique")}
-              className={`relative z-10 px-6 sm:px-8 py-3 rounded-full text-[14px] sm:text-[16px] font-medium transition-colors duration-200 cursor-pointer ${
-                activeTrack === "boutique"
+              onClick={() => handleTrackChange("business")}
+              className={`relative z-10 px-5 sm:px-8 py-2.5 sm:py-3 rounded-full text-[13px] sm:text-[16px] font-medium transition-colors duration-200 cursor-pointer ${
+                activeTrack === "business"
                   ? "text-white"
                   : "text-black/70 hover:text-black"
               }`}
             >
-              {activeTrack === "boutique" && (
+              {activeTrack === "business" && (
                 <motion.div
                   layoutId="activeTrackIndicator"
                   className="absolute inset-0 rounded-full bg-black shadow-md"
                   transition={{ type: "spring", stiffness: 450, damping: 35 }}
                 />
               )}
-              <span className="relative z-10 tracking-tight font-semibold">
-                Boutique & Small Business
+              <span className="relative z-10 tracking-tight font-semibold whitespace-nowrap">
+                <span className="sm:hidden">Business</span>
+                <span className="hidden sm:inline">Business Solutions</span>
               </span>
             </button>
 
             {/* Enterprise Button */}
             <button
               type="button"
-              onClick={() => setActiveTrack("enterprise")}
-              className={`relative z-10 px-6 sm:px-8 py-3 rounded-full text-[14px] sm:text-[16px] transition-colors duration-200 cursor-pointer ${
+              onClick={() => handleTrackChange("enterprise")}
+              className={`relative z-10 px-5 sm:px-8 py-2.5 sm:py-3 rounded-full text-[13px] sm:text-[16px] transition-colors duration-200 cursor-pointer ${
                 activeTrack === "enterprise"
                   ? "text-white"
                   : "text-black/70 hover:text-black"
@@ -331,8 +372,9 @@ export default function AudienceToggleSection() {
                   transition={{ type: "spring", stiffness: 450, damping: 35 }}
                 />
               )}
-              <span className="relative z-10 tracking-tight font-semibold">
-                Enterprise & Multi-Branch
+              <span className="relative z-10 tracking-tight font-semibold whitespace-nowrap">
+                <span className="sm:hidden">Enterprise</span>
+                <span className="hidden sm:inline">Enterprise Solutions</span>
               </span>
             </button>
           </div>
@@ -421,22 +463,22 @@ export default function AudienceToggleSection() {
                 {content.systems.map((sys) => (
                   <div
                     key={sys.id}
-                    className="relative bg-[#0D1117] text-white border border-white/10 rounded-3xl p-7 sm:p-9 flex flex-col justify-between shadow-[0_12px_36px_rgba(0,0,0,0.14)] hover:shadow-[0_24px_50px_rgba(101,181,245,0.18)] hover:border-[#65B5F5]/60 hover:-translate-y-1.5 transition-all duration-300 group overflow-hidden"
+                    className="relative bg-[#0D1117] text-white border border-white/10 rounded-3xl p-5 sm:p-8 flex flex-col justify-between shadow-[0_12px_36px_rgba(0,0,0,0.14)] hover:shadow-[0_24px_50px_rgba(101,181,245,0.18)] hover:border-[#65B5F5]/60 hover:-translate-y-1.5 transition-all duration-300 group overflow-hidden"
                   >
                     {/* Top-right ambient brand glow */}
                     <div className="absolute -top-16 -right-16 w-44 h-44 bg-[#65B5F5]/12 rounded-full blur-2xl group-hover:bg-[#65B5F5]/25 transition-all duration-300 pointer-events-none" />
                     <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
 
-                    <div className="relative z-10 space-y-5">
+                    <div className="relative z-10 space-y-4 sm:space-y-5">
                       {/* Top Meta Bar */}
-                      <div className="flex justify-between items-start gap-2">
-                        <div className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#65B5F5] shadow-[0_0_8px_#65B5F5]" />
-                          <span className="text-[11px] font-mono tracking-wider text-[#65B5F5] uppercase font-semibold">
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#65B5F5] shadow-[0_0_8px_#65B5F5] shrink-0" />
+                          <span className="text-[10px] sm:text-[11px] font-mono tracking-wider text-[#65B5F5] uppercase font-semibold truncate">
                             {sys.category} · {sys.id}
                           </span>
                         </div>
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[12px] font-mono font-bold bg-[#65B5F5]/15 text-[#65B5F5] border border-[#65B5F5]/30 shadow-sm">
+                        <span className="shrink-0 whitespace-nowrap inline-flex items-center px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-[12px] font-mono font-bold bg-[#65B5F5]/15 text-[#65B5F5] border border-[#65B5F5]/30 shadow-xs">
                           {sys.badge}
                         </span>
                       </div>
@@ -503,34 +545,34 @@ export default function AudienceToggleSection() {
                 </h4>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {content.approaches.map((app, idx) => (
                   <div
                     key={idx}
-                    className={`rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 ${
+                    className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 ${
                       app.isPopular
                         ? "bg-[#0D1117] backdrop-blur-xl text-white border border-white/15 shadow-[0_20px_45px_rgba(0,0,0,0.15)]"
                         : "bg-white/80 backdrop-blur-xl text-black border border-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.05] hover:bg-white hover:shadow-[0_25px_50px_rgba(0,0,0,0.08)]"
                     }`}
                   >
                     <div className="space-y-4">
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-center gap-2">
                         <span
-                          className={`text-xs font-mono uppercase tracking-wider ${
+                          className={`text-[11px] sm:text-xs font-mono uppercase tracking-wider ${
                             app.isPopular ? "text-[#65B5F5]" : "text-black/60"
                           }`}
                         >
                           {app.subtitle}
                         </span>
                         {app.isPopular && (
-                          <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-[#65B5F5] text-black font-bold">
+                          <span className="text-[10px] sm:text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-[#65B5F5] text-black font-bold shrink-0 whitespace-nowrap">
                             RECOMMENDED
                           </span>
                         )}
                       </div>
 
                       <h5
-                        className="text-2xl sm:text-3xl font-bold tracking-tight"
+                        className="text-xl sm:text-2xl font-bold tracking-tight"
                         style={{ fontFamily: "var(--font-heading)" }}
                       >
                         {app.title}
@@ -1004,7 +1046,7 @@ function VoiceReceptionistWidget() {
             JIDOKA VOICE AGENT (0.4s RESPONSE)
           </span>
           <p className="text-white">
-            &ldquo;I understand this is urgent for food safety. I can dispatch on-call technician Dave to your Worcester location at 10:15 PM tonight. Flat dispatch is $185. Should I lock that in?&rdquo;
+            &ldquo;I understand this is urgent for food safety. I can dispatch on-call technician Dave to your location at 10:15 PM tonight. Flat dispatch is $185. Should I lock that in?&rdquo;
           </p>
         </div>
 
@@ -1038,7 +1080,7 @@ function MissedCallSmsWidget() {
             AUTO-SMS DISPATCHED IN 4 SECONDS
           </div>
           <p>
-            &ldquo;Hey! Bryce here from Jidoka HVAC. Saw we just missed you while on a roof. How can I help you today?&rdquo;
+            &ldquo;Hey! Jidoka Support here. Saw we just missed you while on a project. How can I help you today?&rdquo;
           </p>
         </div>
 
@@ -1087,11 +1129,11 @@ function RouteSchedulerWidget() {
 
       <div className="p-3 rounded-xl bg-black/40 border border-white/5 text-[11px] font-mono space-y-1.5 text-zinc-300">
         <div className="flex justify-between">
-          <span>Crew Alpha: Worcester Central Cluster (3 jobs)</span>
+          <span>Crew Alpha: Central Metro Cluster (3 jobs)</span>
           <span className="text-emerald-400">0 backtrack</span>
         </div>
         <div className="flex justify-between">
-          <span>Crew Bravo: Shrewsbury / Westborough (4 jobs)</span>
+          <span>Crew Bravo: North Metro Cluster (4 jobs)</span>
           <span className="text-emerald-400">0 backtrack</span>
         </div>
       </div>

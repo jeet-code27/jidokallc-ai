@@ -31,7 +31,7 @@ export interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({
   brandName = "JIDOKA",
-  brandDescription = "Personalized AI agent & automation studio. Built one business at a time in Worcester, MA.",
+  brandDescription = "Applied AI studio engineering bespoke AI agents, autonomous workflows, and enterprise infrastructure.",
   socialLinks = [],
   navLinks = [],
   creatorName,
@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({
               {/* Brand Logo & Description */}
               <div className="space-y-4 flex flex-col items-center flex-1 text-center">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono uppercase tracking-widest text-[#65B5F5]">
-                  <span>WORCESTER, MA</span>
+                  <span>APPLIED AI STUDIO</span>
                   <span>·</span>
                   <span>EST. 2023</span>
                 </div>
