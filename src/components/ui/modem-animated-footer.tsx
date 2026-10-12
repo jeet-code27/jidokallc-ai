@@ -144,16 +144,16 @@ export const Footer: React.FC<FooterProps> = ({
           {brandName.toUpperCase()}
         </div>
 
-        {/* Floating Bottom Logo Badge with jidoka-icon.png */}
-        <div className="absolute hover:border-[#65B5F5]/60 transition-all duration-300 drop-shadow-[0_0px_25px_rgba(101,181,245,0.35)] bottom-24 md:bottom-20 backdrop-blur-md rounded-3xl bg-[#0e121a]/90 left-1/2 border border-white/20 flex items-center justify-center p-3 -translate-x-1/2 z-20 hover:scale-105">
-          <div className="w-14 sm:w-16 md:w-20 h-14 sm:h-16 md:h-20 rounded-2xl flex items-center justify-center overflow-hidden relative shadow-lg bg-black/60 p-2 border border-white/10">
+        {/* Floating Bottom Logo Badge with Mascot / Icon */}
+        <div className="absolute hover:border-[#65B5F5]/60 transition-all duration-300 drop-shadow-[0_0px_25px_rgba(101,181,245,0.45)] bottom-24 md:bottom-20 backdrop-blur-md rounded-3xl bg-[#0e121a]/95 left-1/2 border border-white/20 flex items-center justify-center p-3 -translate-x-1/2 z-20 hover:scale-105">
+          <div className="w-14 sm:w-16 md:w-20 h-14 sm:h-16 md:h-20 rounded-2xl flex items-center justify-center overflow-hidden relative shadow-lg bg-black/70 p-2 border border-white/10">
             {brandIcon || (
               <Image
                 src={iconSrc}
-                alt={`${brandName} Icon`}
+                alt={`${brandName} Mascot`}
                 width={80}
                 height={80}
-                className="w-full h-full object-contain drop-shadow-md"
+                className="w-full h-full object-contain filter drop-shadow-[0_4px_10px_rgba(101,181,245,0.5)]"
               />
             )}
           </div>

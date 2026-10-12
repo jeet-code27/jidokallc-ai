@@ -54,6 +54,7 @@ export default function SiteFooter() {
       navLinks={navLinks}
       creatorName="JIDOKA"
       creatorUrl="mailto:inbox@jidokallc.com"
+      iconSrc="/images/robot-avatar.png"
     />
   );
 }

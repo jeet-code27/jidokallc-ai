@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import { motion } from "motion/react";
 import ProfileCard from "./ui/ProfileCard";
 import { Phone, Sparkles, CheckCircle2, ArrowUpRight, MapPin } from "lucide-react";
 import { ScrollReveal } from "./ui/scroll-reveal";
@@ -61,9 +63,20 @@ export default function FounderSection() {
                   <Sparkles className="w-3.5 h-3.5 text-[#65B5F5]" />
                   THE JIDOKA PRINCIPLE
                 </span>
-                <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-black/5 text-black/70 border border-black/10">
-                  EST. 2023
-                </span>
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-6 sm:w-8 sm:h-7 relative shrink-0">
+                    <Image
+                      src="/images/robot-avatar.png"
+                      alt="AI Architecture"
+                      width={32}
+                      height={28}
+                      className="w-full h-full object-contain filter drop-shadow-[0_2px_6px_rgba(101,181,245,0.4)]"
+                    />
+                  </div>
+                  <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-black/5 text-black/70 border border-black/10">
+                    EST. 2023
+                  </span>
+                </div>
               </div>
 
               <blockquote
@@ -156,8 +169,8 @@ export default function FounderSection() {
           {/* =========================================================================
               RIGHT COLUMN: 3D Interactive ProfileCard
               ========================================================================= */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            <div className="w-full flex justify-center">
+          <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
+            <div className="w-full flex justify-center relative">
               <ProfileCard
                 name="Bryce Meizen"
                 title="Founder & Lead AI Engineer"
@@ -174,6 +187,21 @@ export default function FounderSection() {
                 behindGlowSize="45%"
                 onContactClick={handleContactClick}
               />
+
+              {/* Curious Robot Peeking beside Founder Profile Card (Mobile & Desktop) */}
+              <motion.div
+                animate={{ y: [-4, 4, -4], rotate: [-0.6, 0.6, -0.6] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                className="block absolute -right-2 sm:-right-8 xl:-right-12 top-4 sm:top-8 w-20 h-24 sm:w-28 sm:h-32 xl:w-36 xl:h-40 pointer-events-none select-none z-10 opacity-80 sm:opacity-100"
+              >
+                <Image
+                  src="/images/Curious Robot Peeking Right.png"
+                  alt="Curious Jidoka AI Mascot"
+                  width={144}
+                  height={160}
+                  className="w-full h-full object-contain filter drop-shadow-[0_10px_24px_rgba(101,181,245,0.45)]"
+                />
+              </motion.div>
             </div>
           </div>
 

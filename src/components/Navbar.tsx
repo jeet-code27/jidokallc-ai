@@ -48,9 +48,9 @@ export default function Navbar({
               <Image
                 src="/images/logo-jidoka.png"
                 alt="Jidoka"
-                width={130}
-                height={35}
-                className="h-7 sm:h-8 w-auto object-contain"
+                width={165}
+                height={44}
+                className="h-8 sm:h-9.5 md:h-10 w-auto object-contain"
                 priority
               />
             </a>

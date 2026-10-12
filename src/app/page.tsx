@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import TopTrackBanner, { SiteTrack } from "@/components/TopTrackBanner";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import VoiceAiShowcaseSection from "@/components/VoiceAiShowcaseSection";
 import AudienceToggleSection from "@/components/AudienceToggleSection";
 import MarketplaceSection from "@/components/MarketplaceSection";
 import ScrollVelocity from "@/components/ui/scroll-velocity";
@@ -30,7 +31,10 @@ export default function HomePage() {
       {/* 3. Hero Section with Dynamic Headline (Business vs Enterprise) & Mouse-Scrub Video */}
       <Hero activeTrack={activeTrack} />
 
-      {/* 4. Interactive Solutions & System Catalog Section (Synced with Top Banner) */}
+      {/* 4. Featured Voice AI Showcase Spotlight ("Meet Your AI Receptionist") */}
+      <VoiceAiShowcaseSection />
+
+      {/* 5. Interactive Solutions & System Catalog Section (Synced with Top Banner) */}
       <div id="solutions" className="relative z-10 w-full">
         <AudienceToggleSection
           activeTrack={activeTrack}

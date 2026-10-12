@@ -1,23 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  Check,
-  ArrowRight,
-  X,
-  Clock,
-  Sparkles,
-  ShieldCheck,
-  Activity,
-  PhoneCall,
-  MessageSquare,
-  MapPin,
-  Calendar,
-  Layers,
-  FileText,
-  CheckCircle2,
-} from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 type AudienceTrack = "business" | "enterprise";
 
@@ -87,7 +73,7 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
         category: "VOICE AI",
         title: "After-Hours Voice Receptionist",
         description:
-          "Picks up every call while you're on a job or after hours. Understands your pricing, answers questions naturally, and books directly on your calendar.",
+          "Picks up instantly 24/7, answers questions with pricing logic, and books directly on your calendar.",
         badge: "3x Faster Response",
         highlight: "Never lose an emergency estimate again",
         specs: ["24/7 Call Intake", "Calendar Sync", "Custom Pricing Logic"],
@@ -98,7 +84,7 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
         category: "TEXT & FOLLOW-UP",
         title: "Missed Call Text Back",
         description:
-          "The instant a call is missed, the caller gets a personalized text. Captures the lead immediately while they're still looking for help.",
+          "Sends an automated personalized SMS within 8 seconds of any missed call to lock leads instantly.",
         badge: "92% Recovery Rate",
         highlight: "Most customers reply in under 90 seconds",
         specs: ["< 8s Auto SMS", "Prequalification Flow", "CRM Pipeline Sync"],
@@ -109,7 +95,7 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
         category: "SCHEDULING",
         title: "Route-Aware Field Job Scheduler",
         description:
-          "Automatically groups jobs by geographic zones and drive time rather than just availability, saving hours of gas and windshield time.",
+          "Clusters field jobs by drive-time zones rather than availability, cutting gas and windshield hours.",
         badge: "22% Less Drive Time",
         highlight: "Eliminates double bookings across crews",
         specs: ["Cluster Route AI", "Zone Optimization", "Zero Double Booking"],
@@ -120,7 +106,7 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
         category: "OPERATIONS",
         title: "Digital Timecards & Payroll Sync",
         description:
-          "Replaced paper timecards for seasonal crews. Staff clock in via SMS or simple web link; payroll calculations generate automatically.",
+          "SMS-based geofenced crew clock-in with automated payroll sync — zero Monday paper transcription.",
         badge: "18 hrs saved/season",
         highlight: "Zero paper forms to transcribe on Mondays",
         specs: ["Geofence GPS Clock-In", "Plaid Bank Ledger", "One-Click Payroll"],
@@ -200,7 +186,7 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
         category: "MULTI-AGENT ORCHESTRATION",
         title: "Omnichannel Autonomous Dispatch",
         description:
-          "High-concurrency voice and text agent fleet that triages, qualifies, and routes tickets directly into your internal ERP or custom database.",
+          "High-concurrency voice and text agent fleet routing tickets directly into your internal ERP or database.",
         badge: "Real-time Sync",
         highlight: "Multi-system routing without human bottlenecks",
         specs: ["100+ Concurrency", "ERP/CRM Two-Way Bridge", "SLA Guardrails"],
@@ -211,7 +197,7 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
         category: "INTELLIGENT DOCUMENT PIPELINES",
         title: "Automated Document Intake & Extraction",
         description:
-          "Extracts 50+ structured fields from invoices, medical records, and contracts overnight with automated validation and compliance seals.",
+          "Extracts 50+ structured fields from invoices and contracts overnight with 99.8% verified OCR accuracy.",
         badge: "100% Audit-Ready",
         highlight: "Eliminates weeks of manual data entry",
         specs: ["99.8% OCR Accuracy", "50+ Field Schema", "HIPAA/SOC2 Compliant"],
@@ -222,7 +208,7 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
         category: "DATA & ANALYTICS",
         title: "Real-Time Executive KPI Lakehouse",
         description:
-          "Consolidates disparate data silos across branches, displaying live revenue attribution, pipeline health, and margin anomalies.",
+          "Consolidates branch silos into live executive metrics with margin leak detection and instant sync.",
         badge: "Full-Funnel View",
         highlight: "Single source of truth for leadership",
         specs: ["Zero-Latency Sync", "Margin Leak Alerts", "Multi-Branch Lakehouse"],
@@ -233,7 +219,7 @@ const TRACK_DATA: Record<AudienceTrack, TrackContent> = {
         category: "VOICE AI AT SCALE",
         title: "Bilingual Medical & Dental Intake",
         description:
-          "HIPAA-conscious voice intake agent with real-time Spanish/English switching, insurance verification, and calendar lock.",
+          "HIPAA-conscious voice intake agent with real-time Spanish/English switching and insurance verification.",
         badge: "0 Hold Time",
         highlight: "Handles 100+ concurrent calls seamlessly",
         specs: ["Real-Time EN/ES Switch", "Insurance Eligibility", "EHR/EMR Integration"],
@@ -298,7 +284,6 @@ export default function AudienceToggleSection({
 }: AudienceToggleSectionProps = {}) {
   const [internalTrack, setInternalTrack] = useState<AudienceTrack>("business");
   const activeTrack = controlledTrack ?? internalTrack;
-  const [selectedSystem, setSelectedSystem] = useState<SystemItem | null>(null);
 
   const handleTrackChange = (track: AudienceTrack) => {
     setInternalTrack(track);
@@ -313,8 +298,23 @@ export default function AudienceToggleSection({
         {/* =========================================================================
             1. TOP TOGGLE PILL BAR
             ========================================================================= */}
-        <div className="flex flex-col items-center justify-center text-center mb-12 sm:mb-16 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-full bg-black/5 border border-black/10 text-[11px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70 whitespace-nowrap">
+        <div className="flex flex-col items-center justify-center text-center mb-12 sm:mb-16 space-y-3 sm:space-y-4">
+          {/* Floating Robot Mascot Avatar */}
+          <motion.div
+            animate={{ y: [-4, 4, -4], rotate: [-1, 1, -1] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-16 h-13 sm:w-20 sm:h-16 md:w-24 md:h-19 relative shrink-0 mb-2 sm:mb-3"
+          >
+            <Image
+              src="/images/robot-avatar.png"
+              alt="Jidoka Mascot"
+              width={100}
+              height={80}
+              className="w-full h-full object-contain filter drop-shadow-[0_6px_18px_rgba(101,181,245,0.5)]"
+            />
+          </motion.div>
+
+          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-full bg-black/5 border border-black/10 text-[11px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70 whitespace-nowrap shadow-xs">
             <span>Tailored Solutions</span>
             <span>·</span>
             <span>Select Your Track</span>
@@ -411,6 +411,21 @@ export default function AudienceToggleSection({
                 </p>
               </div>
 
+              {/* Curious Robot Peeking from the right edge into the solutions banner (Visible on mobile & desktop) */}
+              <motion.div
+                animate={{ y: [-4, 4, -4], rotate: [-0.6, 0.6, -0.6] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                className="block absolute -right-3 top-2 sm:-right-6 sm:top-4 xl:-right-8 xl:top-2 w-20 h-24 sm:w-36 sm:h-40 xl:w-56 xl:h-60 pointer-events-none select-none z-10 opacity-80 sm:opacity-100"
+              >
+                <Image
+                  src="/images/Curious Robot Peeking Right.png"
+                  alt="Curious Jidoka AI Mascot"
+                  width={224}
+                  height={240}
+                  className="w-full h-full object-contain filter drop-shadow-[0_12px_28px_rgba(101,181,245,0.4)]"
+                />
+              </motion.div>
+
               {/* Quick Metrics Bar */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 pt-8 border-t border-black/10">
                 {content.stats.map((stat, i) => (
@@ -463,17 +478,25 @@ export default function AudienceToggleSection({
                 {content.systems.map((sys) => (
                   <div
                     key={sys.id}
-                    className="relative bg-[#0D1117] text-white border border-white/10 rounded-3xl p-5 sm:p-8 flex flex-col justify-between shadow-[0_12px_36px_rgba(0,0,0,0.14)] hover:shadow-[0_24px_50px_rgba(101,181,245,0.18)] hover:border-[#65B5F5]/60 hover:-translate-y-1.5 transition-all duration-300 group overflow-hidden"
+                    className="relative bg-[#0D1117] text-white border border-white/10 rounded-3xl p-5 sm:p-7 flex flex-col justify-between shadow-[0_12px_36px_rgba(0,0,0,0.14)] hover:shadow-[0_24px_50px_rgba(101,181,245,0.18)] hover:border-[#65B5F5]/60 hover:-translate-y-1.5 transition-all duration-300 group overflow-hidden"
                   >
                     {/* Top-right ambient brand glow */}
                     <div className="absolute -top-16 -right-16 w-44 h-44 bg-[#65B5F5]/12 rounded-full blur-2xl group-hover:bg-[#65B5F5]/25 transition-all duration-300 pointer-events-none" />
                     <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
 
-                    <div className="relative z-10 space-y-4 sm:space-y-5">
-                      {/* Top Meta Bar */}
+                    <div className="relative z-10 space-y-4">
+                      {/* Top Meta Bar with Restrained Mascot Detail */}
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2 min-w-0">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#65B5F5] shadow-[0_0_8px_#65B5F5] shrink-0" />
+                          <div className="w-5 h-5 rounded-md bg-[#65B5F5]/15 border border-[#65B5F5]/30 flex items-center justify-center p-0.5 shrink-0 group-hover:border-[#65B5F5]/60 transition-colors">
+                            <Image
+                              src="/images/robot-avatar.png"
+                              alt="AI"
+                              width={16}
+                              height={14}
+                              className="object-contain filter drop-shadow-[0_1px_3px_rgba(101,181,245,0.4)]"
+                            />
+                          </div>
                           <span className="text-[10px] sm:text-[11px] font-mono tracking-wider text-[#65B5F5] uppercase font-semibold truncate">
                             {sys.category} · {sys.id}
                           </span>
@@ -491,12 +514,12 @@ export default function AudienceToggleSection({
                         {sys.title}
                       </h5>
 
-                      {/* System Description */}
+                      {/* Concise System Description */}
                       <p className="text-sm sm:text-[15px] text-zinc-300 leading-relaxed font-normal">
                         {sys.description}
                       </p>
 
-                      {/* Micro Spec Pills (Light & Dark Subtle Badges) */}
+                      {/* Micro Spec Pills */}
                       <div className="flex flex-wrap gap-1.5 pt-1">
                         {sys.specs.map((spec) => (
                           <span
@@ -509,21 +532,20 @@ export default function AudienceToggleSection({
                       </div>
                     </div>
 
-                    {/* Footer Row with Verified Outcome and Interactive Demo trigger */}
-                    <div className="relative z-10 mt-7 pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                    {/* Footer Row with Verified Outcome and CTA */}
+                    <div className="relative z-10 mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                       <span className="text-emerald-400 font-medium font-mono flex items-center gap-1.5">
                         <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                         <span>{sys.highlight}</span>
                       </span>
 
-                      <button
-                        type="button"
-                        onClick={() => setSelectedSystem(sys)}
-                        className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full bg-white/10 hover:bg-[#65B5F5] text-white hover:text-black border border-white/15 hover:border-[#65B5F5] transition-all duration-200 cursor-pointer group/btn shadow-xs"
+                      <a
+                        href="#contact"
+                        className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full bg-white/10 hover:bg-[#65B5F5] text-white hover:text-black border border-white/15 hover:border-[#65B5F5] transition-all duration-200 cursor-pointer shadow-xs group/btn"
                       >
-                        <span>Interactive Demo</span>
+                        <span>Deploy System</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                      </button>
+                      </a>
                     </div>
                   </div>
                 ))}
@@ -662,518 +684,6 @@ export default function AudienceToggleSection({
         </AnimatePresence>
       </div>
 
-      {/* =========================================================================
-          INTERACTIVE SYSTEM LIVE DEMO MODAL (WITH TIMECARD/PAYROLL WIDGET)
-          ========================================================================= */}
-      <AnimatePresence>
-        {selectedSystem && (
-          <SystemDemoModal
-            system={selectedSystem}
-            onClose={() => setSelectedSystem(null)}
-          />
-        )}
-      </AnimatePresence>
     </section>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// Interactive System Live Demo Modal Component
-// -----------------------------------------------------------------------------
-function SystemDemoModal({
-  system,
-  onClose,
-}: {
-  system: SystemItem;
-  onClose: () => void;
-}) {
-  // ESC key to close
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/75 backdrop-blur-md">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 15 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className="relative bg-[#0B1019] text-white border border-white/15 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8 space-y-6 ring-1 ring-white/10"
-      >
-        {/* Modal Header */}
-        <div className="flex items-start justify-between gap-4 pb-4 border-b border-white/10">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="w-2 h-2 rounded-full bg-[#65B5F5] shadow-[0_0_8px_#65B5F5]" />
-              <span className="text-[11px] font-mono tracking-wider text-[#65B5F5] uppercase font-bold">
-                {system.category} · {system.id}
-              </span>
-              <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#65B5F5]/15 text-[#65B5F5] border border-[#65B5F5]/30">
-                {system.badge}
-              </span>
-            </div>
-            <h3
-              className="text-2xl sm:text-3xl font-bold tracking-tight text-white"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              {system.title}
-            </h3>
-            <p className="text-xs sm:text-sm text-zinc-300 mt-1">
-              {system.description}
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={onClose}
-            className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-colors cursor-pointer shrink-0"
-            aria-label="Close modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Dynamic Demo Visualizer */}
-        <div className="py-2">
-          {system.demoType === "payroll" ? (
-            <PayrollTimecardWidget />
-          ) : system.demoType === "voice" ? (
-            <VoiceReceptionistWidget />
-          ) : system.demoType === "sms" ? (
-            <MissedCallSmsWidget />
-          ) : system.demoType === "scheduler" ? (
-            <RouteSchedulerWidget />
-          ) : (
-            <EnterprisePipelineWidget system={system} />
-          )}
-        </div>
-
-        {/* Modal Footer CTA */}
-        <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="text-xs font-mono text-zinc-400">
-            ✓ Verified Jidoka Architecture · Ready to deploy
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 rounded-full text-xs font-semibold text-zinc-300 hover:text-white transition-colors"
-            >
-              Close
-            </button>
-            <a
-              href="#contact"
-              onClick={onClose}
-              className="px-5 py-2.5 rounded-full text-xs font-bold bg-[#65B5F5] text-black hover:bg-white hover:text-black transition-all duration-200 shadow-sm inline-flex items-center gap-1.5"
-            >
-              <span>Deploy This System</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// Interactive Widget 1: Digital Timecards & Payroll Sync (From Client Screenshot)
-// -----------------------------------------------------------------------------
-function PayrollTimecardWidget() {
-  const [seconds, setSeconds] = useState(25);
-  const [approved, setApproved] = useState(false);
-
-  // Live ticking timer simulation
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSeconds((prev) => (prev >= 59 ? 0 : prev + 1));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="bg-[#09111C] border border-[#1C2C3E] rounded-2xl p-5 sm:p-6 space-y-4 shadow-inner">
-      {/* 1. Timetrack Clock Bar */}
-      <div className="bg-[#0D1826] border border-[#1F334A] rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <div className="text-[10px] font-mono tracking-wider text-zinc-400 uppercase">
-            TIMETRACK · ON THE CLOCK
-          </div>
-          <div className="text-3xl sm:text-4xl font-mono font-black text-white tracking-wider">
-            03:42:{seconds < 10 ? `0${seconds}` : seconds}
-          </div>
-          <div className="text-xs text-zinc-400 font-mono mt-0.5">
-            Maria R. · Job #118 · Elm St. re-roof
-          </div>
-        </div>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono self-start sm:self-center">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>On site · 42 m from geofence</span>
-        </div>
-      </div>
-
-      {/* 2. Middle Live Board & Ledger Feed Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {/* Left: Live Board */}
-        <div className="bg-[#0D1826] border border-[#1F334A] rounded-xl p-4 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">
-              LIVE BOARD
-            </span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-zinc-300">
-              6 clocked in
-            </span>
-          </div>
-
-          <div className="space-y-2">
-            {/* Crew Member 1 */}
-            <div className="flex items-center justify-between p-2 rounded-lg bg-white/5 border border-white/5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-teal-500/20 text-teal-300 font-mono text-xs flex items-center justify-center font-bold">
-                  MR
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-white leading-none">
-                    Maria R.
-                  </div>
-                  <div className="text-[10px] text-zinc-400">Elm St. re-roof</div>
-                </div>
-              </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                On site
-              </span>
-            </div>
-
-            {/* Crew Member 2 */}
-            <div className="flex items-center justify-between p-2 rounded-lg bg-white/5 border border-white/5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-amber-500/20 text-amber-300 font-mono text-xs flex items-center justify-center font-bold">
-                  DK
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-white leading-none">
-                    Dev K.
-                  </div>
-                  <div className="text-[10px] text-zinc-400">→ Job #121</div>
-                </div>
-              </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/15 text-amber-400 border border-amber-500/30">
-                Travel
-              </span>
-            </div>
-
-            {/* Crew Member 3 */}
-            <div className="flex items-center justify-between p-2 rounded-lg bg-white/5 border border-white/5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-slate-500/20 text-slate-300 font-mono text-xs flex items-center justify-center font-bold">
-                  JT
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-white leading-none">
-                    Jess T.
-                  </div>
-                  <div className="text-[10px] text-zinc-400">Shop · loading</div>
-                </div>
-              </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-500/15 text-zinc-400 border border-zinc-500/30">
-                Shop
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Ledger Bank Feed (Clean White Card as in Client Screenshot!) */}
-        <div className="bg-white text-black rounded-xl p-4 space-y-3 shadow-md flex flex-col justify-between">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-mono uppercase tracking-wider text-black/60 font-bold">
-              LEDGER · BANK FEED
-            </span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 font-semibold border border-emerald-500/30">
-              Plaid · connected
-            </span>
-          </div>
-
-          <div className="space-y-2 text-xs">
-            {/* Transaction 1 */}
-            <div className="flex items-center justify-between pb-1.5 border-b border-black/5">
-              <div>
-                <div className="font-bold text-black text-[11px]">
-                  Home Depot #2214
-                </div>
-                <div className="text-[10px] text-black/50">
-                  Materials · Job #118
-                </div>
-              </div>
-              <span className="font-mono font-bold text-rose-600">
-                -$412.80
-              </span>
-            </div>
-
-            {/* Transaction 2 */}
-            <div className="flex items-center justify-between pb-1.5 border-b border-black/5">
-              <div>
-                <div className="font-bold text-black text-[11px]">
-                  Invoice #1047 paid
-                </div>
-                <div className="text-[10px] text-black/50">
-                  Accounts receivable
-                </div>
-              </div>
-              <span className="font-mono font-bold text-emerald-600">
-                +$3,250.00
-              </span>
-            </div>
-
-            {/* Transaction 3 */}
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="font-bold text-black text-[11px]">Shell Fuel</div>
-                <div className="text-[10px] text-black/50">Vehicle · Truck 2</div>
-              </div>
-              <span className="font-mono font-bold text-rose-600">-$96.14</span>
-            </div>
-          </div>
-
-          {/* Action Row */}
-          <div className="pt-2 border-t border-black/10 flex items-center justify-between gap-2">
-            <span className="text-[10px] text-black/60 font-medium">
-              {approved ? "All approved ✓" : "3 categorized · awaiting OK"}
-            </span>
-            <button
-              type="button"
-              onClick={() => setApproved(!approved)}
-              className={`px-3 py-1 rounded-full text-[11px] font-bold font-mono transition-colors cursor-pointer ${
-                approved
-                  ? "bg-emerald-600 text-white"
-                  : "bg-teal-700 hover:bg-teal-800 text-white"
-              }`}
-            >
-              {approved ? "Approved ✓" : "Approve all"}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. Bottom Payroll-Ready Summary Bar */}
-      <div className="bg-[#0D1826] border border-[#1F334A] rounded-xl p-3 grid grid-cols-3 gap-2 text-center">
-        <div>
-          <div className="text-[10px] font-mono uppercase text-zinc-400">
-            PAYROLL-READY
-          </div>
-          <div className="text-base sm:text-xl font-mono font-extrabold text-white">
-            312.5 h
-          </div>
-        </div>
-        <div>
-          <div className="text-[10px] font-mono uppercase text-zinc-400">
-            OVERTIME
-          </div>
-          <div className="text-base sm:text-xl font-mono font-extrabold text-white">
-            14.0 h
-          </div>
-        </div>
-        <div>
-          <div className="text-[10px] font-mono uppercase text-zinc-400">
-            LABOR / JOB
-          </div>
-          <div className="text-base sm:text-xl font-mono font-extrabold text-[#65B5F5]">
-            $18.4k
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// Interactive Widget 2: After-Hours Voice Receptionist Simulator
-// -----------------------------------------------------------------------------
-function VoiceReceptionistWidget() {
-  const [playing, setPlaying] = useState(true);
-
-  return (
-    <div className="bg-[#09111C] border border-[#1C2C3E] rounded-2xl p-5 sm:p-6 space-y-4">
-      <div className="flex items-center justify-between pb-3 border-b border-white/10">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span className="text-xs font-mono text-emerald-400 font-bold">
-            LIVE CALL STREAM · 0 HOLD TIME
-          </span>
-        </div>
-        <button
-          type="button"
-          onClick={() => setPlaying(!playing)}
-          className="text-[11px] font-mono px-3 py-1 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-        >
-          {playing ? "Pause Audio" : "Play Simulator"}
-        </button>
-      </div>
-
-      {/* Voice Waveform Graphic */}
-      <div className="h-14 bg-black/40 rounded-xl flex items-center justify-center gap-1 px-4 overflow-hidden">
-        {[40, 65, 80, 50, 90, 100, 75, 45, 85, 95, 60, 30, 70, 90, 55, 40, 80, 60].map(
-          (h, i) => (
-            <div
-              key={i}
-              className="w-1.5 bg-[#65B5F5] rounded-full transition-all duration-300"
-              style={{
-                height: playing ? `${Math.max(15, (h * (i % 2 === 0 ? 1 : 0.7)))}%` : "15%",
-                opacity: playing ? 0.9 : 0.3,
-              }}
-            />
-          )
-        )}
-      </div>
-
-      {/* Conversation Script */}
-      <div className="space-y-2.5 text-xs">
-        <div className="p-3 rounded-xl bg-white/5 border border-white/5 space-y-1">
-          <span className="text-[10px] font-mono text-zinc-400 uppercase">
-            CALLER (9:42 PM)
-          </span>
-          <p className="text-zinc-200">
-            &ldquo;Hi, our walk-in cooler just started buzzing and temp is up to 52°. Can someone come out tonight?&rdquo;
-          </p>
-        </div>
-
-        <div className="p-3 rounded-xl bg-[#65B5F5]/10 border border-[#65B5F5]/25 space-y-1">
-          <span className="text-[10px] font-mono text-[#65B5F5] uppercase font-bold">
-            JIDOKA VOICE AGENT (0.4s RESPONSE)
-          </span>
-          <p className="text-white">
-            &ldquo;I understand this is urgent for food safety. I can dispatch on-call technician Dave to your location at 10:15 PM tonight. Flat dispatch is $185. Should I lock that in?&rdquo;
-          </p>
-        </div>
-
-        <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between text-[11px] text-emerald-400 font-mono">
-          <span>✓ Slot reserved & dispatched to Dave&apos;s phone</span>
-          <span>Google Cal Sync</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// Interactive Widget 3: Missed Call Text Back Simulator
-// -----------------------------------------------------------------------------
-function MissedCallSmsWidget() {
-  return (
-    <div className="bg-[#09111C] border border-[#1C2C3E] rounded-2xl p-5 space-y-3">
-      <div className="flex items-center justify-between text-xs font-mono text-zinc-400 pb-2 border-b border-white/10">
-        <span>SMS PIPELINE RECOVERY</span>
-        <span className="text-emerald-400">Instant &lt; 8s Dispatch</span>
-      </div>
-
-      <div className="space-y-2 max-w-md mx-auto">
-        <div className="text-center py-1 text-[10px] font-mono text-rose-400 bg-rose-500/10 rounded-full">
-          Missed Call from (508) 724-1102 (2 rings)
-        </div>
-
-        <div className="p-3 rounded-2xl rounded-tr-xs bg-[#65B5F5] text-black text-xs font-medium space-y-1 ml-auto max-w-[85%]">
-          <div className="text-[9px] font-mono uppercase text-black/60">
-            AUTO-SMS DISPATCHED IN 4 SECONDS
-          </div>
-          <p>
-            &ldquo;Hey! Jidoka Support here. Saw we just missed you while on a project. How can I help you today?&rdquo;
-          </p>
-        </div>
-
-        <div className="p-3 rounded-2xl rounded-tl-xs bg-white/10 text-white text-xs space-y-1 mr-auto max-w-[85%]">
-          <div className="text-[9px] font-mono uppercase text-zinc-400">
-            CUSTOMER (REPLIED IN 48 SECONDS)
-          </div>
-          <p>
-            &ldquo;Looking for an estimate on a 3-ton heat pump replacement for our clinic.&rdquo;
-          </p>
-        </div>
-
-        <div className="p-3 rounded-2xl rounded-tr-xs bg-[#65B5F5] text-black text-xs font-medium space-y-1 ml-auto max-w-[85%]">
-          <p>
-            &ldquo;Got it! Here is our instant pricing calculator and direct booking link: jidokallc.com/quote-hp. Locks in a 10% instant rebate.&rdquo;
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// Interactive Widget 4: Route-Aware Field Job Scheduler Simulator
-// -----------------------------------------------------------------------------
-function RouteSchedulerWidget() {
-  return (
-    <div className="bg-[#09111C] border border-[#1C2C3E] rounded-2xl p-5 space-y-4">
-      <div className="flex items-center justify-between text-xs font-mono text-zinc-400 pb-2 border-b border-white/10">
-        <span>ZONE-AWARE CLUSTER ENGINE</span>
-        <span className="text-[#65B5F5]">22% Drive Time Saved</span>
-      </div>
-
-      <div className="grid grid-cols-2 gap-3 text-xs">
-        <div className="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
-          <div className="text-[10px] font-mono text-zinc-400">TRADITIONAL ROUTE</div>
-          <div className="text-xl font-bold font-mono text-rose-400">114 Miles</div>
-          <div className="text-[10px] text-zinc-400">4.6 hrs windshield time / crew</div>
-        </div>
-        <div className="p-3 rounded-xl bg-[#65B5F5]/10 border border-[#65B5F5]/30 space-y-1">
-          <div className="text-[10px] font-mono text-[#65B5F5]">JIDOKA CLUSTER ROUTE</div>
-          <div className="text-xl font-bold font-mono text-emerald-400">51 Miles</div>
-          <div className="text-[10px] text-zinc-300">2.1 hrs windshield time (-55%)</div>
-        </div>
-      </div>
-
-      <div className="p-3 rounded-xl bg-black/40 border border-white/5 text-[11px] font-mono space-y-1.5 text-zinc-300">
-        <div className="flex justify-between">
-          <span>Crew Alpha: Central Metro Cluster (3 jobs)</span>
-          <span className="text-emerald-400">0 backtrack</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Crew Bravo: North Metro Cluster (4 jobs)</span>
-          <span className="text-emerald-400">0 backtrack</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// Interactive Widget 5: Enterprise Multi-Agent & Extraction Pipelines
-// -----------------------------------------------------------------------------
-function EnterprisePipelineWidget({ system }: { system: SystemItem }) {
-  return (
-    <div className="bg-[#09111C] border border-[#1C2C3E] rounded-2xl p-5 space-y-3 font-mono text-xs">
-      <div className="flex items-center justify-between pb-2 border-b border-white/10 text-zinc-400">
-        <span>SYSTEM TELEMETRY · {system.id}</span>
-        <span className="text-emerald-400">Status: HEALTHY (99.9% SLA)</span>
-      </div>
-
-      <div className="bg-black/60 rounded-xl p-4 space-y-2 text-[11px] text-zinc-300 overflow-x-auto">
-        <div className="text-[#65B5F5]">
-          {`// Real-time architecture stream`}
-        </div>
-        <div>
-          {`> active_concurrency: 142 streams`}
-        </div>
-        <div>
-          {`> average_latency: 380ms (Deterministic LLM + Voice)`}
-        </div>
-        <div>
-          {`> extraction_accuracy: 99.8% across 54 schema fields`}
-        </div>
-        <div>
-          {`> downstream_sync: PostgreSQL / SAP ERP / EHR Bridge [OK]`}
-        </div>
-      </div>
-
-      <div className="p-3 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between text-[11px] text-zinc-300">
-        <span>Air-gapped sensitive data handling</span>
-        <span className="text-emerald-400 font-bold">SOC2 / HIPAA Compliant</span>
-      </div>
-    </div>
   );
 }

@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
+import { motion } from "motion/react";
 import { Sparkles, ArrowUpRight, Download, Check, Layers, Mail, BookOpen, Zap } from "lucide-react";
 import { ScrollReveal, ScrollStagger } from "./ui/scroll-reveal";
 
@@ -100,11 +102,26 @@ export default function MarketplaceSection() {
             1. SECTION HEADER
             ========================================================================= */}
         <ScrollReveal className="flex flex-col items-center justify-center text-center mb-14 sm:mb-18 space-y-5">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 text-[12px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70">
-            <Sparkles className="w-3.5 h-3.5 text-[#65B5F5]" />
-            <span>THE JIDOKA MARKETPLACE</span>
-            <span>·</span>
-            <span className="text-[#0969DA] font-semibold">COMING SOON</span>
+          <div className="flex flex-col items-center justify-center gap-3">
+            <motion.div
+              animate={{ y: [-4, 4, -4], rotate: [-1, 1, -1] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-16 h-13 sm:w-20 sm:h-16 md:w-24 md:h-19 relative shrink-0"
+            >
+              <Image
+                src="/images/robot-avatar.png"
+                alt="Jidoka Mascot"
+                width={100}
+                height={80}
+                className="w-full h-full object-contain filter drop-shadow-[0_6px_18px_rgba(101,181,245,0.5)]"
+              />
+            </motion.div>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 border border-black/10 text-[11px] sm:text-[13px] font-mono uppercase tracking-widest text-black/70 shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#65B5F5]" />
+              <span>THE JIDOKA MARKETPLACE</span>
+              <span>·</span>
+              <span className="text-[#0969DA] font-semibold">COMING SOON</span>
+            </div>
           </div>
 
           <h2

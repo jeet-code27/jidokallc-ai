@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import { motion } from "motion/react";
 import { Cpu, ShieldAlert, Users, ArrowUpRight } from "lucide-react";
 import { ScrollReveal, ScrollStagger } from "./ui/scroll-reveal";
 
@@ -21,6 +23,23 @@ export default function BrandPhilosophySection() {
 
             {/* Header & Centerpiece Statement */}
             <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
+              {/* Friendly Robot Mascot Accent */}
+              <div className="flex justify-center -mb-2">
+                <motion.div
+                  animate={{ y: [-4, 4, -4], rotate: [-1, 1, -1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-14 h-12 sm:w-20 sm:h-17 md:w-24 md:h-20 lg:w-28 lg:h-23 relative"
+                >
+                  <Image
+                    src="/images/robot-avatar.png"
+                    alt="Automation with a human touch"
+                    width={112}
+                    height={92}
+                    className="w-full h-full object-contain filter drop-shadow-[0_8px_20px_rgba(101,181,245,0.5)]"
+                  />
+                </motion.div>
+              </div>
+
               {/* Signature Highlight Headline */}
               <h2
                 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-black leading-[1.25]"

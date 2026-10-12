@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useSpring } from "motion/react";
+import Image from "next/image";
+import { useSpring, motion } from "motion/react";
 import { ScrollReveal } from "./ui/scroll-reveal";
 
 export default function RoiCalculatorSection() {
@@ -37,7 +38,22 @@ export default function RoiCalculatorSection() {
 
   return (
     <section id="calculator" className="relative w-full bg-[#FAF8F5] text-black py-20 sm:py-28 px-5 sm:px-8 md:px-10 border-t border-black/10 select-none overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative">
+        {/* Curious Robot Peeking into the Calculator Header Blank Space (Mobile & Desktop) */}
+        <motion.div
+          animate={{ y: [-5, 5, -5], rotate: [-0.6, 0.6, -0.6] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          className="block absolute -right-2 top-0 sm:right-0 sm:top-2 w-20 h-24 sm:w-36 sm:h-40 xl:w-52 xl:h-56 pointer-events-none select-none z-10 opacity-80 sm:opacity-100"
+        >
+          <Image
+            src="/images/Curious Robot Peeking Right.png"
+            alt="Curious Jidoka AI Mascot"
+            width={208}
+            height={224}
+            className="w-full h-full object-contain filter drop-shadow-[0_12px_28px_rgba(101,181,245,0.45)]"
+          />
+        </motion.div>
+
         {/* =========================================================================
             1. SECTION HEADER (WITH BRAND HIGHLIGHT STICKER)
             ========================================================================= */}
@@ -174,15 +190,32 @@ export default function RoiCalculatorSection() {
             </div>
           </div>
 
-          {/* Right Column: High-Impact Result Card (Dark Glassmorphic Box) */}
-          <div className="relative lg:col-span-5 bg-black/95 backdrop-blur-xl text-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-[0_20px_45px_rgba(0,0,0,0.15)] ring-1 ring-white/10 hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
-            {/* Ambient Background Glow */}
-            <div className="absolute -top-20 -right-20 w-56 h-56 bg-[#65B5F5]/20 rounded-full blur-3xl group-hover:bg-[#65B5F5]/35 transition-all duration-300 pointer-events-none" />
+          {/* Right Column: High-Impact Result Card (Wrapper with Laptop Robot perched on top) */}
+          <div className="relative lg:col-span-5 flex flex-col mt-6 sm:mt-8 lg:mt-0">
+            {/* Laptop Robot: Cleanly perched on top-right of the card (Mobile & Desktop) */}
+            <motion.div
+              animate={{ y: [-4, 4, -4], rotate: [-0.5, 0.5, -0.5] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="block absolute -top-14 right-2 sm:-top-16 sm:right-4 xl:-top-18 xl:-right-4 w-28 h-24 sm:w-36 sm:h-32 xl:w-44 xl:h-40 pointer-events-none select-none z-20"
+            >
+              <Image
+                src="/images/Friendly Blue AI Robot Typing on Laptop.png"
+                alt="Friendly AI Robot Typing on Laptop"
+                width={176}
+                height={160}
+                className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(101,181,245,0.45)]"
+              />
+            </motion.div>
 
-            <div className="relative z-10 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-mono tracking-widest uppercase text-[#65B5F5]">
-                <span>ESTIMATED ANNUAL DRAIN</span>
-              </div>
+            {/* Dark Glassmorphic Result Card */}
+            <div className="h-full bg-black/95 backdrop-blur-xl text-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-[0_20px_45px_rgba(0,0,0,0.15)] ring-1 ring-white/10 hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+              {/* Ambient Background Glow */}
+              <div className="absolute -top-20 -right-20 w-56 h-56 bg-[#65B5F5]/20 rounded-full blur-3xl group-hover:bg-[#65B5F5]/35 transition-all duration-300 pointer-events-none" />
+
+              <div className="relative z-10 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-mono tracking-widest uppercase text-[#65B5F5]">
+                  <span>ESTIMATED ANNUAL DRAIN</span>
+                </div>
 
               {/* Animated Big Number */}
               <div
@@ -221,6 +254,7 @@ export default function RoiCalculatorSection() {
                   →
                 </span>
               </a>
+            </div>
             </div>
           </div>
         </div>
